@@ -12,6 +12,7 @@
 
     <properties>
         <org.springframework-version>4.1.6.RELEASE</org.springframework-version>
+        <com.fasterxml.jackson.core-version>2.5.1</com.fasterxml.jackson.core-version>
     </properties>
 
     <repositories>
@@ -54,7 +55,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.5.1</version>
+            <version>${com.fasterxml.jackson.core-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${com.fasterxml.jackson.core-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${com.fasterxml.jackson.core-version}</version>
         </dependency>
 
     </dependencies>
