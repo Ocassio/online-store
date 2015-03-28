@@ -12,5 +12,6 @@ public class OffersController
     public String sayHello(@PathVariable("name") String name)
     {
         return "Hello " + name;
+        //[ALSH] test commit
     }
 }
