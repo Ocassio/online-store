@@ -43,4 +43,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>online-store</finalName>
+    </build>
+
 </project>
