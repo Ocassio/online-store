@@ -8,7 +8,17 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-       <context:component-scan base-package="ru.bpr.onlinestore.portal.services" />
-       <context:annotation-config />
+    <context:component-scan base-package="ru.bpr.onlinestore.portal.services" />
+    <context:annotation-config />
+
+    <beans profile="development">
+        <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceStub"/>
+        <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
+    </beans>
+    
+    <beans profile="production">
+        <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceImpl"/>
+        <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
+    </beans>
 
 </beans>
