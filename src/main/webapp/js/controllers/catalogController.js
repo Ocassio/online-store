@@ -1,5 +1,3 @@
-angular.module("portal", []).controller("CatalogController", CatalogController);
+portal.controller("CatalogController", function() {
 
-function CatalogController($scope) {
-    $scope.someValue = 123;
-}
+});
