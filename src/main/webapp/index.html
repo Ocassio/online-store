@@ -12,9 +12,9 @@
 
     <title>Online Store</title>
 </head>
-<body >
+<body ng-controller="CatalogController as catalogCtrl">
 
-    <div webix-ui type="space" ng-controller="CatalogController">
+    <div webix-ui type="space">
         <div height="35">Header {{app}}</div>
         <div view="cols" type="wide" margin="10">
             <div width="200">
@@ -23,7 +23,16 @@
             <div view="resizer"></div>
             <div view="tabview">
                 <div header="Tab1">
-                    1. Some content here
+                    <div view="rows">
+                        <div view="cols">
+                            <div view="datatable" webix-data="catalogCtrl.offers" select="row" autoheight="true" autowidth="true">
+                                <div view="column" id="name">Name</div>
+                                <div view="column" id="price">Price</div>
+                            </div>
+                            <div view="spacer"></div>
+                        </div>
+                        <div view="spacer"></div>
+                    </div>
                 </div>
                 <div header="Tab2">
                     2. Other content here
