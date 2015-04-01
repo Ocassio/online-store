@@ -1,1 +1,1 @@
-var portal = angular.module("portal", ['webix']);
+var portal = angular.module("portal", []);
