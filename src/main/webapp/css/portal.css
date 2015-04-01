@@ -1,0 +1,14 @@
+/**
+ * A place for custom portal CSS
+ */
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.offers-image {
+    width: 128px;
+    height: 128px;
+}
