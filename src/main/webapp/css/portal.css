@@ -12,3 +12,8 @@
     width: 128px;
     height: 128px;
 }
+
+.offer-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}

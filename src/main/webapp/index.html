@@ -20,32 +20,36 @@
             <h1>
                 <span>Online Store</span>
                 <form class="form pull-right" role="form">
-                    <div class="row">
+                    <!--<div class="row">-->
                         <div class="colform-group">
                             <input type="text" placeholder="Search" class="form-control vcenter">
                         </div>
-                    </div>
+                    <!--</div>-->
                 </form>
             </h1>
         </div>
     </div>
 
     <div class="container">
-        <div class="panel panel-primary" ng-repeat="offer in catalogCtrl.offers">
-            <div class="panel-heading">
-                <h2 class="panel-title">{{offer.name}}</h2>
-            </div>
-            <div class="panel-body">
-                <div class="media pull-left">
-                    <div class="media-left">
-                        <img src="images/image-placeholder.png" class="media-object offers-image">
+        <div class="row">
+            <div class="offer-container col-md-6" ng-repeat="offer in catalogCtrl.offers">
+                <div class="panel panel-primary " >
+                    <div class="panel-heading">
+                        <h2 class="panel-title">{{offer.name}}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media pull-left">
+                            <div class="media-left">
+                                <img src="images/image-placeholder.png" class="media-object offers-image">
+                            </div>
+                        </div>
+
+                        <p>{{offer.description}}</p>
+                        <p>
+                            <a class="btn btn-success pull-right" href="#" role="button">{{offer.price}}</a>
+                        </p>
                     </div>
                 </div>
-
-                <p>{{offer.description}}</p>
-                <p>
-                    <a class="btn btn-success pull-right" href="#" role="button">{{offer.price}}</a>
-                </p>
             </div>
         </div>
     </div>
