@@ -22,7 +22,7 @@
             <span>Online Store</span>
             <form class="form pull-right" role="form">
                 <div class="colform-group">
-                    <input type="text" placeholder="Search" class="form-control vcenter">
+                    <input type="text" placeholder="Search" class="form-control vcenter" ng-model="searchText">
                 </div>
             </form>
             <div class="page-header">
@@ -60,7 +60,8 @@
     <div class="container">
         <div class="row">
             <div class="offer-container col-md-6"
-                 ng-repeat="offer in catalogCtrl.offers | startFrom: (catalogCtrl.currentPage - 1) * catalogCtrl.itemsPerPage | limitTo: catalogCtrl.itemsPerPage">
+                 ng-repeat="offer in catalogCtrl.offers | filter: searchText |
+                  startFrom: (catalogCtrl.currentPage - 1) * catalogCtrl.itemsPerPage | limitTo: catalogCtrl.itemsPerPage">
                 <div class="panel panel-primary " >
                     <div class="panel-heading">
                         <h2 class="panel-title">{{offer.name}}</h2>
