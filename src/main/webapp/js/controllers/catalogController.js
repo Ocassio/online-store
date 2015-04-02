@@ -22,4 +22,6 @@ portal.controller("CatalogController", function($http) {
         portal.totalItems = data.length;
     });
 
+    this.categories = ["Apps","Games","Movies","Books","Newspapper"];
+
 });
