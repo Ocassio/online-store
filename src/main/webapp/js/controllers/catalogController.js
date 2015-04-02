@@ -22,19 +22,15 @@ portal.controller("CatalogController", function($http) {
         portal.totalItems = data.length;
     });
 
-    this.categories = ["Apps","Games","Movies","Books","Newspapper"];
-    this.currentTab = this.categories[0];
+    this.categories = ["Apps","Games","Movies","Books","Newspaper"];
+    this.currentCategory = this.categories[0];
 
-    this.setCurrentTab = function(choosenTab) {
-        this.currentTab = choosenTab;
+    this.setCurrentCategory = function(category) {
+        this.currentCategory = category;
     };
 
-    this.getCurrentTab = function() {
-        return this.currentTab;
-    };
-
-    this.isTabSelected = function(checkTab) {
-        return this.currentTab === checkTab;
+    this.isCategorySelected = function(category) {
+        return this.currentCategory === category;
     };
 
 });

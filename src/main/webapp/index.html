@@ -25,17 +25,14 @@
                     <input type="text" placeholder="Search" class="form-control vcenter" ng-model="searchText">
                 </div>
             </form>
-            <div class="page-header">
-                <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                    <div class="btn-group" role="group" ng-repeat="type in catalogCtrl.categories">
-                        <button type="button" class="btn btn-default" aria-label="Left Align"
-                                ng-class="{active:catalogCtrl.isTabSelected(type)}" ng-click="catalogCtrl.setCurrentTab(type)">
-                            {{type}}
-                        </button>
-                    </div>
-                </div>
-            </div>
         </h1>
+        <div class="page-header">
+            <div class="btn-group btn-group-justified">
+                <label ng-repeat="category in catalogCtrl.categories" class="btn btn-default" ng-model="catalogCtrl.currentCategory" btn-radio="'{{category}}'" uncheckable>
+                    {{category}}
+                </label>
+            </div>
+        </div>
     </div>
 
     <div class="container">
