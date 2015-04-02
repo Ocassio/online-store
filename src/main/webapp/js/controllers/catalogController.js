@@ -23,5 +23,18 @@ portal.controller("CatalogController", function($http) {
     });
 
     this.categories = ["Apps","Games","Movies","Books","Newspapper"];
+    this.currentTab = this.categories[0];
+
+    this.setCurrentTab = function(choosenTab) {
+        this.currentTab = choosenTab;
+    };
+
+    this.getCurrentTab = function() {
+        return this.currentTab;
+    };
+
+    this.isTabSelected = function(checkTab) {
+        return this.currentTab === checkTab;
+    };
 
 });

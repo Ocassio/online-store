@@ -28,7 +28,8 @@
             <div class="page-header">
                 <div class="btn-group btn-group-justified" role="group" aria-label="...">
                     <div class="btn-group" role="group" ng-repeat="type in catalogCtrl.categories">
-                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                        <button type="button" class="btn btn-default" aria-label="Left Align"
+                                ng-class="{active:catalogCtrl.isTabSelected(type)}" ng-click="catalogCtrl.setCurrentTab(type)">
                             {{type}}
                         </button>
                     </div>
