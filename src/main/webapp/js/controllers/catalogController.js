@@ -22,8 +22,13 @@ portal.controller("CatalogController", function($http) {
 
     this.categories = ["Apps","Games","Movies","Books","Newspaper"];
 
-    this.addToCart = function (offerId) {
+    this.addToCart = function (offerId, count) {
+        var path = "/online-store/rest/offers/add/" + offerId;
+        var params = {count: count};
 
+        $http.get(path, params).success(function() {
+            console.log("Offer " + offerId + " has been successfully added");
+        });
     };
 
 });
