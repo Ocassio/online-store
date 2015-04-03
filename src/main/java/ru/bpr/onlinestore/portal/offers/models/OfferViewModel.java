@@ -72,4 +72,16 @@ public class OfferViewModel implements Serializable
     {
         this.rating = rating;
     }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof OfferViewModel)
+        {
+            OfferViewModel other = (OfferViewModel) obj;
+            return this.getId().equals(other.getId());
+        }
+
+        return false;
+    }
 }

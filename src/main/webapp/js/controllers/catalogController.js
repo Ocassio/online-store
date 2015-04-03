@@ -22,4 +22,8 @@ portal.controller("CatalogController", function($http) {
 
     this.categories = ["Apps","Games","Movies","Books","Newspaper"];
 
+    this.addToCart = function (offerId) {
+
+    };
+
 });
