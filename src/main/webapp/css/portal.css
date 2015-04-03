@@ -21,3 +21,8 @@
 .offer-right-col {
     padding-right: 0px;
 }
+
+.offer-right-col-row {
+    padding-left: 15px;
+    padding-right: 15px;
+}

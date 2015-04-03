@@ -7,12 +7,10 @@ portal.controller("CatalogController", function($http) {
     this.currentPage = 1;
     this.maxSize = 5;
 
+    this.maxRating = 5;
+
     this.setPage = function(page) {
         this.currentPage = page;
-    };
-
-    this.pageChanged = function() {
-
     };
 
     this.offers = [];

@@ -8,14 +8,20 @@
                 <h2 class="panel-title">{{offer.name}}</h2>
             </div>
             <div class="panel-body">
-                <div clss="row">
-                <img src="images/image-placeholder.png" class="col-md-4 img-responsive offers-image offer-col">
+                <img src="images/image-placeholder.png" class="col-md-4 img-responsive offers-image">
                 <div class="col-md-8 offer-right-col">
-                    <p>{{offer.description}}</p>
-                    <div class="btn-group btn-group-justified">
-                        <a class="btn btn-success" href="#" role="button">{{offer.price}}</a>
+                    <div class="row offer-right-col-row">
+                        <h4 class="text-right">{{offer.price}}</h4>
                     </div>
-                </div>
+                    <div class="row offer-right-col-row">
+                        <rating class="pull-right" ng-model="offer.rating" max="catalogCtrl.maxRating" readonly="true"></rating>
+                    </div>
+                    <div class="row offer-right-col-row">
+                        <p class="text-justify">{{offer.description}}</p>
+                        </div>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-success" href="#" role="button">Add to Cart</a>
+                    </div>
                 </div>
             </div>
         </div>

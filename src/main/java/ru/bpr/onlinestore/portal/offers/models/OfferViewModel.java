@@ -8,17 +8,19 @@ public class OfferViewModel implements Serializable
     private String name;
     private String description;
     private String price;
+    private String rating;
 
     public OfferViewModel()
     {
     }
 
-    public OfferViewModel(String id, String name, String description, String price)
+    public OfferViewModel(String id, String name, String description, String price, String rating)
     {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.rating = rating;
     }
 
     public String getId()
@@ -59,5 +61,15 @@ public class OfferViewModel implements Serializable
     public void setPrice(String price)
     {
         this.price = price;
+    }
+
+    public String getRating()
+    {
+        return rating;
+    }
+
+    public void setRating(String rating)
+    {
+        this.rating = rating;
     }
 }
