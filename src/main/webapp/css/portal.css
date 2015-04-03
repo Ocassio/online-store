@@ -9,11 +9,15 @@
 }
 
 .offers-image {
-    width: 128px;
-    height: 128px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .offer-container {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.offer-right-col {
+    padding-right: 0px;
 }

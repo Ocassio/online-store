@@ -3,20 +3,20 @@
          ng-repeat="offer in catalogCtrl.filteredOffers = (catalogCtrl.offers | filter: searchText) |
                   startFrom: (catalogCtrl.currentPage - 1) * catalogCtrl.itemsPerPage | limitTo: catalogCtrl.itemsPerPage">
 
-        <div class="panel panel-primary " >
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 class="panel-title">{{offer.name}}</h2>
             </div>
             <div class="panel-body">
-                <div class="media pull-left">
-                    <div class="media-left">
-                        <img src="images/image-placeholder.png" class="media-object offers-image">
+                <div clss="row">
+                <img src="images/image-placeholder.png" class="col-md-4 img-responsive offers-image offer-col">
+                <div class="col-md-8 offer-right-col">
+                    <p>{{offer.description}}</p>
+                    <div class="btn-group btn-group-justified">
+                        <a class="btn btn-success" href="#" role="button">{{offer.price}}</a>
                     </div>
                 </div>
-                <p>{{offer.description}}</p>
-                <p>
-                    <a class="btn btn-success pull-right" href="#" role="button">{{offer.price}}</a>
-                </p>
+                </div>
             </div>
         </div>
 
