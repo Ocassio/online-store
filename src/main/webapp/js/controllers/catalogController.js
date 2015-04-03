@@ -22,12 +22,4 @@ portal.controller("CatalogController", function($http) {
 
     this.categories = ["Apps","Games","Movies","Books","Newspaper"];
 
-    this.setCurrentCategory = function(category) {
-        this.currentCategory = category;
-    };
-
-    this.isCategorySelected = function(category) {
-        return this.currentCategory === category;
-    };
-
 });
