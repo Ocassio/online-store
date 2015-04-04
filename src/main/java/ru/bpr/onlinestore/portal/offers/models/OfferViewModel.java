@@ -6,6 +6,7 @@ public class OfferViewModel implements Serializable
 {
     private String id;
     private String name;
+    private String categoryId;
     private String description;
     private String price;
     private String rating;
@@ -15,10 +16,11 @@ public class OfferViewModel implements Serializable
     {
     }
 
-    public OfferViewModel(String id, String name, String description, String price, String rating)
+    public OfferViewModel(String id, String name, String categoryId, String description, String price, String rating)
     {
         this.id = id;
         this.name = name;
+        this.categoryId = categoryId;
         this.description = description;
         this.price = price;
         this.rating = rating;
@@ -42,6 +44,16 @@ public class OfferViewModel implements Serializable
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public String getCategoryId()
+    {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId)
+    {
+        this.categoryId = categoryId;
     }
 
     public String getDescription()

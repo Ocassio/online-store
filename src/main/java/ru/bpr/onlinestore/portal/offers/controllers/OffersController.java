@@ -19,7 +19,7 @@ public class OffersController
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    @RequestMapping("/getAllOffers")
+    @RequestMapping("/getAll")
     public List<OfferViewModel> getAllOffers()
     {
         return catalogService.getOffers();

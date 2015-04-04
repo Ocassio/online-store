@@ -1,6 +1,6 @@
 portal.controller("CatalogController", function($http) {
 
-    var portal = this;
+    var catalog = this;
 
     this.totalItems = 0;
     this.itemsPerPage = 6;
@@ -15,12 +15,16 @@ portal.controller("CatalogController", function($http) {
 
     this.offers = [];
 
-    $http.get("/online-store/rest/offers/getAllOffers").success(function(data) {
-        portal.offers = data;
-        portal.totalItems = data.length;
+    $http.get("/online-store/rest/offers/getAll").success(function(data) {
+        catalog.offers = data;
+        catalog.totalItems = data.length;
     });
 
-    this.categories = ["Apps","Games","Movies","Books","Newspaper"];
+    this.categories = [];
+
+    $http.get("/online-store/rest/categories/getAll").success(function(data) {
+        catalog.categories = data;
+    });
 
     this.addToCart = function (offer, count) {
         var path = "/online-store/rest/offers/add/" + offer.id;
