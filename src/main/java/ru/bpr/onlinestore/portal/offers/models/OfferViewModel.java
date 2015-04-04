@@ -9,6 +9,7 @@ public class OfferViewModel implements Serializable
     private String description;
     private String price;
     private String rating;
+    private boolean inCart;
 
     public OfferViewModel()
     {
@@ -71,6 +72,16 @@ public class OfferViewModel implements Serializable
     public void setRating(String rating)
     {
         this.rating = rating;
+    }
+
+    public boolean isInCart()
+    {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart)
+    {
+        this.inCart = inCart;
     }
 
     @Override

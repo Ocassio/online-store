@@ -20,7 +20,8 @@
                         <p class="text-justify">{{offer.description}}</p>
                     </div>
                     <div class="btn-group btn-group-justified">
-                        <a class="btn btn-success" href="#" ng-click="catalogCtrl.addToCart(offer.id)" role="button">Add to Cart</a>
+                        <a class="btn btn-success" ng-hide="offer.inCart" href="#" ng-click="catalogCtrl.addToCart(offer)" role="button">Add to Cart</a>
+                        <a class="btn btn-danger" ng-show="offer.inCart" href="#" ng-click="catalogCtrl.removeFromCart(offer)" role="button">Remove</a>
                     </div>
                 </div>
             </div>
