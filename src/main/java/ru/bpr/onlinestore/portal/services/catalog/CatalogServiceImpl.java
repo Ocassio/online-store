@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class CatalogServiceImpl implements CatalogService
 {
-    @Resource(name = "sessionFactory")
-    private SessionFactory sessionFactory;
+    /*@Resource(name = "sessionFactory")
+    private SessionFactory sessionFactory;*/
 
     public List<OfferViewModel> getOffers()
     {
-        categories();
+        //categories();
         List<OfferViewModel> offers = new ArrayList<OfferViewModel>();
         offers.add(new OfferViewModel("3", "Offer 1", "1", "Offer 1 description", "$1000", "4"));
         offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "3"));
@@ -36,10 +36,10 @@ public class CatalogServiceImpl implements CatalogService
         return new ArrayList<CategoryViewModel>();
     }
 
-    private List<Category> categories()
+    /*private List<Category> categories()
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("FROM Category");
         return query.list();
-    }
+    }*/
 }
