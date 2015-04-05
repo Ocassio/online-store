@@ -1,7 +1,7 @@
 <div class="row">
     <div class="offer-container col-md-6"
          ng-repeat="offer in catalogCtrl.filteredOffers = (catalogCtrl.offers |
-                  filter: { name: searchText, categoryId: catalogCtrl.currentCategory.id }) |
+                  filter: { name: portalCtrl.searchText, categoryId: catalogCtrl.currentCategory.id }) |
                   startFrom: (catalogCtrl.currentPage - 1) * catalogCtrl.itemsPerPage | limitTo: catalogCtrl.itemsPerPage">
 
         <div class="panel panel-primary">

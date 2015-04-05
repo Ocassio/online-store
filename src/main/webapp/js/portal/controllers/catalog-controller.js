@@ -44,12 +44,4 @@ portalControllers.controller("CatalogController", function($http, $modal) {
         });
     };
 
-    this.showSignInForm = function() {
-        $modal.open({
-            templateUrl: "views/portal-sign-in-form.html",
-            controller: "SignInController",
-            size: "sm"
-        });
-    };
-
 });
