@@ -15,14 +15,14 @@ portalControllers.controller("CatalogController", function($http, $modal) {
 
     this.offers = [];
 
-    $http.get("/online-store/rest/offers/getAll").success(function(data) {
+    $http.get("/online-store/rest/offers/get").success(function(data) {
         catalog.offers = data;
         catalog.totalItems = data.length;
     });
 
     this.categories = [];
 
-    $http.get("/online-store/rest/categories/getAll").success(function(data) {
+    $http.get("/online-store/rest/categories/get").success(function(data) {
         catalog.categories = data;
     });
 

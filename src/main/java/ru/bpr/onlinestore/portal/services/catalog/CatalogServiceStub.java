@@ -6,32 +6,21 @@ import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class CatalogServiceStub implements CatalogService
 {
+    List<OfferViewModel> offers;
     public List<OfferViewModel> getOffers()
     {
-        List<OfferViewModel> offers = new ArrayList<OfferViewModel>();
-        offers.add(new OfferViewModel("1", "Offer 1", "1", "Offer 1 description", "$1000", "5"));
-        offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "5"));
-        offers.add(new OfferViewModel("3", "Offer 3", "1", "Offer 3 description", "$3000", "2"));
-        offers.add(new OfferViewModel("2", "Offer 2", "3", "Offer 2 description", "$2000", "5"));
-        offers.add(new OfferViewModel("3", "Offer 3", "1", "Offer 3 description", "$3000", "1"));
-        offers.add(new OfferViewModel("2", "Offer 2", "4", "Offer 2 description", "$2000", "5"));
-        offers.add(new OfferViewModel("3", "Offer 3", "4", "Offer 3 description", "$3000", "4"));
-        offers.add(new OfferViewModel("2", "Offer 2", "1", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "1", "Offer 3 description", "$3000", "3"));
-        offers.add(new OfferViewModel("2", "Offer 2", "5", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "2", "Offer 3 description", "$3000", "5"));
-        offers.add(new OfferViewModel("2", "Offer 2", "5", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "3", "Offer 3 description", "$3000", "2"));
-        offers.add(new OfferViewModel("2", "Offer 2", "1", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "4", "Offer 3 description", "$3000", "1"));
-        offers.add(new OfferViewModel("2", "Offer 2", "5", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "1", "Offer 3 description", "$3000", "4"));
-        offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "3"));
-        offers.add(new OfferViewModel("3", "Offer 3", "3", "Offer 3 description", "$3000", "2"));
+        Random random = new Random();
+        offers = new ArrayList<OfferViewModel>();
+        int countOffers = 20;
+        for (int i = 1; i < countOffers; i++)
+        {
+            offers.add(new OfferViewModel("" + i, "Offer " + i, "" +random.nextInt(5) + 1, "Offer " + i + " description", "$"+ random.nextInt(30000), "" +random.nextInt(5) + 1));
+        }
 
         return offers;
     }
@@ -46,5 +35,10 @@ public class CatalogServiceStub implements CatalogService
         categories.add(new CategoryViewModel("5", "Newspapers"));
 
         return categories;
+    }
+
+    public OfferViewModel getOffer(String offerId)
+    {
+        return offers.get(Integer.parseInt(offerId));
     }
 }

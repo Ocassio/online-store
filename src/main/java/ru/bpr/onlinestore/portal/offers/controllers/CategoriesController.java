@@ -15,7 +15,7 @@ public class CategoriesController
     @Autowired
     private CatalogService catalogService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/get")
     public List<CategoryViewModel> getCatgories()
     {
         return catalogService.getCategories();

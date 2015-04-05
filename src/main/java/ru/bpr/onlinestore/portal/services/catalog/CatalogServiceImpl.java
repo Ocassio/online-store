@@ -1,16 +1,9 @@
 package ru.bpr.onlinestore.portal.services.catalog;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.bpr.onlinestore.portal.offers.models.CategoryViewModel;
 import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
-import ru.bpr.onlinestore.portal.services.models.Category;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,11 +13,11 @@ public class CatalogServiceImpl implements CatalogService
 {
     /*@Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;*/
-
+    List<OfferViewModel> offers;
     public List<OfferViewModel> getOffers()
     {
         //categories();
-        List<OfferViewModel> offers = new ArrayList<OfferViewModel>();
+        offers = new ArrayList<OfferViewModel>();
         offers.add(new OfferViewModel("3", "Offer 1", "1", "Offer 1 description", "$1000", "4"));
         offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "3"));
 
@@ -34,6 +27,11 @@ public class CatalogServiceImpl implements CatalogService
     public List<CategoryViewModel> getCategories()
     {
         return new ArrayList<CategoryViewModel>();
+    }
+
+    @Override
+    public OfferViewModel getOffer(String offerId) {
+        return offers.get(Integer.parseInt(offerId));
     }
 
     /*private List<Category> categories()

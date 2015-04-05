@@ -9,6 +9,7 @@ public class ResponseModel implements Serializable
 
     public ResponseModel()
     {
+
     }
 
     public ResponseModel(boolean success)

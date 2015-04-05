@@ -19,10 +19,16 @@ public class OffersController
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/get")
     public List<OfferViewModel> getAllOffers()
     {
         return catalogService.getOffers();
+    }
+
+    @RequestMapping("/offers/get/{offerId}")
+    public OfferViewModel getOffer(@PathVariable("offerId") String offerId)
+    {
+        return catalogService.getOffer(offerId);
     }
 
     @RequestMapping(value = "/add/{offerId}", method = RequestMethod.GET)

@@ -22,7 +22,7 @@
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceStub"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
     </beans>
-    
+
     <beans profile="production">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceImpl"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
