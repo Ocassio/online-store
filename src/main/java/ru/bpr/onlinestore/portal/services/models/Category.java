@@ -1,4 +1,4 @@
-package ru.bpr.onlinestore.portal.offers.models;
+package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

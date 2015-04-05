@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bpr.onlinestore.portal.offers.models.Category;
 import ru.bpr.onlinestore.portal.offers.models.CategoryViewModel;
 import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
+import ru.bpr.onlinestore.portal.services.models.Category;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
