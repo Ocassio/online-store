@@ -10,6 +10,7 @@ import ru.bpr.onlinestore.portal.offers.models.Category;
 import ru.bpr.onlinestore.portal.offers.models.CategoryViewModel;
 import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @Transactional
 public class CatalogServiceImpl implements CatalogService
 {
-    @Autowired
+    @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     public List<OfferViewModel> getOffers()

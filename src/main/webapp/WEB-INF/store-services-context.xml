@@ -17,6 +17,28 @@
     <context:annotation-config />
     <context:property-placeholder location="/WEB-INF/spring.properties" />
 
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:configLocation="${hibernate.config}"
+          p:packagesToScan="ru.bpr.onlinestore.portal.offers.models"/>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close"
+          p:driverClass="${app.jdbc.driverClassName}"
+          p:jdbcUrl="${app.jdbc.url}"
+          p:user="${app.jdbc.username}"
+          p:password="${app.jdbc.password}"
+          p:acquireIncrement="5"
+          p:idleConnectionTestPeriod="60"
+          p:maxPoolSize="100"
+          p:maxStatements="50"
+          p:minPoolSize="10" />
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+          p:sessionFactory-ref="sessionFactory" />
+
 
     <beans profile="development">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceStub"/>
@@ -26,28 +48,6 @@
     <beans profile="production">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceImpl"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
-
-        <tx:annotation-driven transaction-manager="transactionManager" />
-
-        <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
-              p:dataSource-ref="dataSource"
-              p:configLocation="${hibernate.config}"
-              p:packagesToScan="ru.bpr.onlinestore.portal.offers.models"/>
-
-        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-              destroy-method="close"
-              p:driverClass="${app.jdbc.driverClassName}"
-              p:jdbcUrl="${app.jdbc.url}"
-              p:user="${app.jdbc.username}"
-              p:password="${app.jdbc.password}"
-              p:acquireIncrement="5"
-              p:idleConnectionTestPeriod="60"
-              p:maxPoolSize="100"
-              p:maxStatements="50"
-              p:minPoolSize="10" />
-
-        <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-              p:sessionFactory-ref="sessionFactory" />
     </beans>
 
 </beans>
