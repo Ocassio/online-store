@@ -1,6 +1,6 @@
-var portal = angular.module("portal", ["ui.bootstrap"]);
+var portalFilters = angular.module("portal.filters", []);
 
-portal.filter('startFrom', function() {
+portalFilters.filter('startFrom', function() {
     return function(input, start) {
         start = +start; //parse to int
         return input.slice(start);

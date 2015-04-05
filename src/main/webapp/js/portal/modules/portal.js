@@ -1,0 +1,1 @@
+var portal = angular.module("portal", ["ui.bootstrap", "portal.controllers", "portal.filters", "portal.directives"]);

@@ -1,4 +1,4 @@
-portal.controller("CatalogController", function($http) {
+portalControllers.controller("CatalogController", function($http) {
 
     var catalog = this;
 
