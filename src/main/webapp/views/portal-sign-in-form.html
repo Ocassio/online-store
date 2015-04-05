@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h3 class="modal-title">Sing In</h3>
+</div>
+<div class="modal-body">
+    <form name="signInForm" class="form" novalidate>
+        <div class="form-group"
+             ng-class="{'has-error': signInForm.email.$invalid && signInForm.email.$dirty, 'has-success': signInForm.email.$valid && signInForm.email.$dirty}">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input name="email" type="email" placeholder="Email" class="form-control"
+                       ng-class="{'has-error': signInForm.email.$error}" ng-model="form.email" required>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': signInForm.password.$invalid && signInForm.password.$dirty, 'has-success': signInForm.password.$valid && signInForm.password.$dirty}">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input name="password" type="password" placeholder="Password" class="form-control" ng-model="form.password" ng-minlength="6" required>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-disabled="signInForm.$invalid" ng-click="submit(signInForm)">OK</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>

@@ -2,10 +2,12 @@
  * A place for custom portal CSS
  */
 
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+.btn-sign-in {
+    margin-bottom: 4px; /* feels like a hack */
+}
+
+.form-inline > .form-group {
+    vertical-align: top;
 }
 
 .offers-image {

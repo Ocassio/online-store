@@ -1,7 +1,16 @@
 <h1>
     <span>Online Store</span>
-    <form class="form pull-right col-xs-2 input-group" role="form">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-        <input type="text" placeholder="Search" class="form-control vcenter" ng-model="searchText">
+    <form class="form-inline pull-right" role="form">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                <input type="text" placeholder="Search" class="form-control" ng-model="searchText">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <button class="btn btn-success btn-sign-in" ng-click="catalogCtrl.showSignInForm()">Sign In</button>
+            </div>
+        </div>
     </form>
 </h1>

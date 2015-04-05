@@ -1,4 +1,4 @@
-portalControllers.controller("CatalogController", function($http) {
+portalControllers.controller("CatalogController", function($http, $modal) {
 
     var catalog = this;
 
@@ -42,6 +42,14 @@ portalControllers.controller("CatalogController", function($http) {
         $http.get(path, params).success(function() {
             offer.inCart = false;
         });
-    }
+    };
+
+    this.showSignInForm = function() {
+        $modal.open({
+            templateUrl: "views/portal-sign-in-form.html",
+            controller: "SignInController",
+            size: "sm"
+        });
+    };
 
 });
