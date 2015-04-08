@@ -2,6 +2,8 @@
  * A place for custom portal CSS
  */
 
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* fix Angular UI pointer missing */
+
 .btn-sign-in {
     margin-bottom: 4px; /* feels like a hack */
 }
