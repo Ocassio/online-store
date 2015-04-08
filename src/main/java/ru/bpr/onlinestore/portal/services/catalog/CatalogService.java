@@ -1,7 +1,7 @@
 package ru.bpr.onlinestore.portal.services.catalog;
 
-import ru.bpr.onlinestore.portal.offers.models.CategoryViewModel;
-import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 
 import java.util.List;
 

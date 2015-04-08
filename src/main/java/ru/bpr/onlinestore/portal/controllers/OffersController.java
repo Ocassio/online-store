@@ -1,9 +1,9 @@
-package ru.bpr.onlinestore.portal.offers.controllers;
+package ru.bpr.onlinestore.portal.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.catalog.CatalogService;
 import ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartService;
 

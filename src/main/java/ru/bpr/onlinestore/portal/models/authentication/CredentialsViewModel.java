@@ -1,17 +1,17 @@
-package ru.bpr.onlinestore.portal.offers.models;
+package ru.bpr.onlinestore.portal.models.authentication;
 
 import java.io.Serializable;
 
-public class CredentialsModel implements Serializable
+public class CredentialsViewModel implements Serializable
 {
     private String email;
     private String password;
 
-    public CredentialsModel()
+    public CredentialsViewModel()
     {
     }
 
-    public CredentialsModel(String email, String password)
+    public CredentialsViewModel(String email, String password)
     {
         this.email = email;
         this.password = password;

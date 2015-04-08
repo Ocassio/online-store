@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title">Sign Up</h3>
+</div>
+<div class="modal-body">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.message}}</alert>
+    <form name="signUpForm" class="form" novalidate>
+        <div class="form-group"
+             ng-class="{'has-error': signUpForm.email.$invalid && signUpForm.email.$dirty, 'has-success': signUpForm.email.$valid && signUpForm.email.$dirty}">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input name="email" type="email" placeholder="Email" class="form-control"
+                       ng-class="{'has-error': signUpForm.email.$error}" ng-model="form.email" required>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': (signUpForm.password.$invalid && signUpForm.password.$dirty) || (signUpForm.confirmation.$invalid && signUpForm.confirmation.$dirty),
+                        'has-success': (signUpForm.password.$valid && signUpForm.password.$dirty) || (signUpForm.confirmation.$valid && signUpForm.confirmation.$dirty)}">
+            <div class="input-group">
+                <input id="password" name="password" type="password" placeholder="Password" class="form-control" ng-model="form.password" ng-minlength="6" required>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input name="confirmation" type="password" placeholder="Confirmation" class="form-control" ng-model="form.confirmation" ng-minlength="6" match="form.password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group"
+                 ng-class="{'has-error': (signUpForm.name.$invalid && signUpForm.name.$dirty) || (signUpForm.surname.$invalid && signUpForm.surname.$dirty),
+                        'has-success': (signUpForm.name.$valid && signUpForm.name.$dirty) || (signUpForm.surname.$valid && signUpForm.surname.$dirty)}">
+                <input name="name" type="text" placeholder="First Name" class="form-control"
+                       ng-class="{'has-error': signUpForm.name.$error}" ng-model="form.name" required>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input name="surname" type="text" placeholder="Second Name" class="form-control"
+                       ng-class="{'has-error': signUpForm.surname.$error}" ng-model="form.surname" required>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': signUpForm.address.$invalid && signUpForm.address.$dirty, 'has-success': signUpForm.address.$valid && signUpForm.address.$dirty}">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+                <input name="address" type="text" placeholder="Address" class="form-control"
+                       ng-class="{'has-error': signUpForm.address.$error}" ng-model="form.address" required>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" ng-disabled="signUpForm.$invalid" ng-click="submit(signUpForm)">OK</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</div>

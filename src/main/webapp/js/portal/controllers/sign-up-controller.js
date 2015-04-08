@@ -1,18 +1,21 @@
-portalControllers.controller("SignInController", function($scope, $http, $modal, $modalInstance) {
+portalControllers.controller("SignUpController", function($scope, $http, $modalInstance) {
 
     $scope.submit = function(form) {
         $scope.closeAllAlerts();
 
         if (form.$valid) {
-            var path = "/online-store/rest/auth/signIn";
+            var path = "/online-store/rest/auth/signUp";
             var params = {
                 email: form.email.$modelValue,
-                password: CryptoJS.SHA256(form.password.$modelValue).toString()
+                password: CryptoJS.SHA256(form.password.$modelValue).toString(),
+                name: form.name.$modelValue,
+                surname: form.surname.$modelValue,
+                address: form.address.$modelValue
             };
 
             $http.put(path, params).success(function(response) {
                 if (response.success) {
-                    $scope.addAlert('success', "You've been successfully signed in");
+                    $scope.addAlert('success', "You've been successfully signed up");
                 } else if (response.error) {
                     $scope.addAlert('danger', response.error);
                 } else {
@@ -24,14 +27,6 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
 
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
-    };
-
-    $scope.showSignUpForm = function() {
-        $scope.cancel();
-        $modal.open({
-            templateUrl: "views/portal-sign-up-form.html",
-            controller: "SignUpController"
-        });
     };
 
     $scope.alerts = [];

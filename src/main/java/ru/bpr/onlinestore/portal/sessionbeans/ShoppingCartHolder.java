@@ -3,7 +3,7 @@ package ru.bpr.onlinestore.portal.sessionbeans;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 
 import java.io.Serializable;
 import java.util.HashMap;

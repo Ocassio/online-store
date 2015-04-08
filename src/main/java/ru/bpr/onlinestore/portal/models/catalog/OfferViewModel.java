@@ -1,4 +1,4 @@
-package ru.bpr.onlinestore.portal.offers.models;
+package ru.bpr.onlinestore.portal.models.catalog;
 
 import java.io.Serializable;
 

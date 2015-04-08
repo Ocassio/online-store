@@ -1,8 +1,8 @@
 package ru.bpr.onlinestore.portal.services.catalog;
 
 import org.springframework.stereotype.Service;
-import ru.bpr.onlinestore.portal.offers.models.CategoryViewModel;
-import ru.bpr.onlinestore.portal.offers.models.OfferViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
+import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
