@@ -1,4 +1,6 @@
-portalControllers.controller("PortalController", function($http, $modal) {
+portalControllers.controller("PortalController", function($scope, $http, $modal, shoppingCart) {
+
+    $scope.shoppingCart = shoppingCart;
 
     var portal = this;
 

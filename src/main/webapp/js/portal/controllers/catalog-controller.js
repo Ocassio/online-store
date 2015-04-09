@@ -1,4 +1,4 @@
-portalControllers.controller("CatalogController", function($http, $modal) {
+portalControllers.controller("CatalogController", function($http, shoppingCart) {
 
     var catalog = this;
 
@@ -32,6 +32,7 @@ portalControllers.controller("CatalogController", function($http, $modal) {
 
         $http.get(path, params).success(function() {
             offer.inCart = true;
+            shoppingCart.add(offer);
         });
     };
 
@@ -41,6 +42,7 @@ portalControllers.controller("CatalogController", function($http, $modal) {
 
         $http.get(path, params).success(function() {
             offer.inCart = false;
+            shoppingCart.remove(offer);
         });
     };
 

@@ -4,7 +4,7 @@
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* fix Angular UI pointer missing */
 
-.btn-sign-in {
+.btn-header {
     margin-bottom: 4px; /* feels like a hack */
 }
 
