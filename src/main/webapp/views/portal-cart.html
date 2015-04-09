@@ -1,1 +1,12 @@
-Some text here
+<table class="table table-striped">
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="offer in shoppingCart.offers | filter: {name: portalCtrl.searchText} | orderBy: 'name'">
+            <td>{{offer.name}}</td>
+            <td>{{offer.price | currency}}</td>
+        </tr>
+    </tbody>
+</table>

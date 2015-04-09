@@ -8,6 +8,10 @@
     cursor: pointer;
 }
 
+.categories {
+    margin-bottom: 20px;
+}
+
 .btn-header {
     margin-bottom: 4px; /* feels like a hack */
 }
