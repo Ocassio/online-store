@@ -26,24 +26,4 @@ portalControllers.controller("CatalogController", function($http, shoppingCart) 
         catalog.categories = data;
     });
 
-    this.addToCart = function (offer, count) {
-        var path = "/online-store/rest/offers/add/" + offer.id;
-        var params = {count: count};
-
-        $http.get(path, params).success(function() {
-            offer.inCart = true;
-            shoppingCart.add(offer);
-        });
-    };
-
-    this.removeFromCart = function(offer, count) {
-        var path = "/online-store/rest/offers/remove/" + offer.id;
-        var params = {count: count};
-
-        $http.get(path, params).success(function() {
-            offer.inCart = false;
-            shoppingCart.remove(offer);
-        });
-    };
-
 });

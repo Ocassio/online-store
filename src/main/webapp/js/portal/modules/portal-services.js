@@ -1,21 +1,67 @@
 var portalServices = angular.module("portal.services", []);
 
-portalServices.factory("shoppingCart", function() {
-    return {
+portalServices.factory("shoppingCart", function($http) {
+    var service =  {
+
+        /**
+         * ------------------------------------------------------------------
+         * ---------                Public API                      ---------
+         * ------------------------------------------------------------------
+         */
 
         offers: [],
 
-        add: function(offer) {
+        add: function(offer, count) {
+            var path = "/online-store/rest/cart/add/" + offer.id;
+            var params = {count: count};
+
+            $http.get(path, params).success(this.onOfferAdded.bind(this, offer));
+        },
+
+        remove: function(offer, count) {
+            var path = "/online-store/rest/cart/remove/" + offer.id;
+            var params = {count: count};
+
+            $http.get(path, params).success(this.onOfferRemoved.bind(this, offer));
+        },
+
+        isInCart: function(offer) {
+            return _.some(this.offers, this.offerMatcher, offer);
+        },
+
+        /**
+         * ------------------------------------------------------------------
+         * ---------              Private methods                   ---------
+         * ------------------------------------------------------------------
+         */
+
+        init: function() {
+            this.loadOffers();
+        },
+
+        loadOffers: function() {
+            $http.get("/online-store/rest/cart/get").success(this.onOffersLoaded.bind(this));
+        },
+
+        onOffersLoaded: function(response) {
+            this.offers = response;
+        },
+
+        onOfferAdded: function(offer) {
             this.offers.push(offer);
         },
 
-        remove: function(offer) {
-            this.offers =  _.reject(this.offers, this.removeReject, offer);
+        onOfferRemoved: function(offer) {
+            this.offers =  _.reject(this.offers, this.offerMatcher, offer);
         },
 
-        removeReject: function(offer) {
+        offerMatcher: function(offer) {
             return this.id === offer.id;
         }
 
     };
+
+    service.init();
+
+    return service;
 });
