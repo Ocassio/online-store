@@ -1,8 +1,12 @@
-portalControllers.controller("PortalController", function($scope, $http, $modal, shoppingCart) {
+portalControllers.controller("PortalController", function($scope, $location, $modal, shoppingCart) {
 
     $scope.shoppingCart = shoppingCart;
 
     var portal = this;
+
+    this.go = function(path) {
+        $location.path(path);
+    };
 
     this.searchText = "";
 

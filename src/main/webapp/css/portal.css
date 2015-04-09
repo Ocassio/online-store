@@ -4,6 +4,10 @@
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* fix Angular UI pointer missing */
 
+.header-title {
+    cursor: pointer;
+}
+
 .btn-header {
     margin-bottom: 4px; /* feels like a hack */
 }
