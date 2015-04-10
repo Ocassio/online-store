@@ -56,4 +56,10 @@ public class ShoppingCartController
             }
         }
     }
+
+    @RequestMapping("/clear")
+    public void clear()
+    {
+        shoppingCartService.clear();
+    }
 }

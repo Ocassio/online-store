@@ -25,8 +25,16 @@ portalServices.factory("shoppingCart", function($http) {
             $http.get(path, params).success(this.onOfferRemoved.bind(this, offer));
         },
 
+        clear: function() {
+            $http.get("/online-store/rest/cart/clear").success(this.onClear.bind(this));
+        },
+
         isInCart: function(offer) {
             return _.some(this.offers, this.offerMatcher, offer);
+        },
+
+        isEmpty: function() {
+            return this.offers.length === 0;
         },
 
         /**
@@ -53,6 +61,10 @@ portalServices.factory("shoppingCart", function($http) {
 
         onOfferRemoved: function(offer) {
             this.offers =  _.reject(this.offers, this.offerMatcher, offer);
+        },
+
+        onClear: function() {
+            this.offers.splice(0, this.offers.length);
         },
 
         offerMatcher: function(offer) {

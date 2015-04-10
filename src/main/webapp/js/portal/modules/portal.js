@@ -10,7 +10,9 @@ portal.config(['$routeProvider', function($routeProvider) {
         })
         .when('/cart',
         {
-            templateUrl: 'views/portal-cart.html'
+            templateUrl: 'views/portal-cart.html',
+            controller: "CartController",
+            controllerAs: "cartCtrl"
         })
         .otherwise({redirectTo: '/'});
 }]);

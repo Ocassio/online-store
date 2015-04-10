@@ -6,4 +6,5 @@ public interface ShoppingCartService
     void setOfferCount(String offerId, int count);
     void removeOffer(String offerId);
     void removeOffer(String offerId, int count);
+    void clear();
 }

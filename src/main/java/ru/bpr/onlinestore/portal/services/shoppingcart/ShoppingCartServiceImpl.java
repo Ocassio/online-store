@@ -29,4 +29,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService
     {
 
     }
+
+    public void clear()
+    {
+
+    }
 }

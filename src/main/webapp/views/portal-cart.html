@@ -1,12 +1,26 @@
-<table class="table table-striped">
-    <thead>
-        <th>Name</th>
-        <th>Price</th>
-    </thead>
-    <tbody>
-        <tr ng-repeat="offer in shoppingCart.offers | filter: {name: portalCtrl.searchText} | orderBy: 'name'">
-            <td>{{offer.name}}</td>
-            <td>{{offer.price | currency}}</td>
-        </tr>
-    </tbody>
-</table>
+<div ng-hide="shoppingCart.isEmpty()">
+    <table class="table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="offer in shoppingCart.offers | filter: {name: portalCtrl.searchText} | orderBy: 'name'">
+                <td>{{offer.name}}</td>
+                <td>{{offer.price | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form class="form-inline">
+        <div class="form-group pull-right">
+            <button class="btn btn-success">Continue with order</button>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger" ng-click="cartCtrl.clear()">Clear</button>
+        </div>
+    </form>
+</div>
+<div ng-show="shoppingCart.isEmpty()">
+    <h3 class="text-center">Cart is empty for now</h3>
+    <h5 class="text-center">You can visit our <a href="#/">catalog page</a> to select goods suitable for you</h5>
+</div>
