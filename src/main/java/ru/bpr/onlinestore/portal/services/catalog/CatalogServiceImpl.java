@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
+import ru.bpr.onlinestore.portal.services.loading.CategoryLoadingService;
+import ru.bpr.onlinestore.portal.services.loading.OfferLoadingService;
 import ru.bpr.onlinestore.portal.services.models.Category;
 
 import java.util.ArrayList;
@@ -18,11 +20,16 @@ import java.util.List;
 public class CatalogServiceImpl implements CatalogService
 {
     @Autowired(required = false)
-    private SessionFactory sessionFactory;
+    CategoryLoadingService categoryLoadingService;
+    @Autowired(required = false)
+    OfferLoadingService offerLoadingService;
+
     List<OfferViewModel> offers;
+
     public List<OfferViewModel> getOffers()
     {
-        categories();
+        categoryLoadingService.loadCategories();
+        offerLoadingService.loadOffers();
         offers = new ArrayList<OfferViewModel>();
         offers.add(new OfferViewModel("3", "Offer 1", "1", "Offer 1 description", "$1000", "4"));
         offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "3"));
@@ -36,14 +43,8 @@ public class CatalogServiceImpl implements CatalogService
     }
 
     @Override
-    public OfferViewModel getOffer(String offerId) {
-        return offers.get(Integer.parseInt(offerId));
-    }
-
-    private List<Category> categories()
+    public OfferViewModel getOffer(String offerId)
     {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("FROM Category");
-        return query.list();
+        return offers.get(Integer.parseInt(offerId));
     }
 }

@@ -26,6 +26,8 @@
     <beans profile="production">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceImpl"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
+        <bean id="categoryLoadingService" class="ru.bpr.onlinestore.portal.services.loading.CategoryLoadingServiceImpl"/>
+        <bean id="offerLoadingService" class="ru.bpr.onlinestore.portal.services.loading.OfferLoadingServiceImpl"/>
 
         <tx:annotation-driven transaction-manager="transactionManager" />
 
