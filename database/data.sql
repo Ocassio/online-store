@@ -1,4 +1,4 @@
-use online-store;
+use `online-store`;
 
 insert into CATEGORIES values (1, 'category1');
 insert into CATEGORIES values (2, 'category2');
