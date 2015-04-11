@@ -38,3 +38,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.table-hover tbody tr {
+    cursor: pointer;
+}
