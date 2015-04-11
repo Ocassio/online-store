@@ -37,6 +37,14 @@ portalServices.factory("shoppingCart", function($http) {
             return this.offers.length === 0;
         },
 
+        getTotal: function() {
+            var total = 0;
+            for (var i = 0; i < this.offers.length; i++) {
+                total += +this.offers[i].price;
+            }
+            return total;
+        },
+
         /**
          * ------------------------------------------------------------------
          * ---------              Private methods                   ---------

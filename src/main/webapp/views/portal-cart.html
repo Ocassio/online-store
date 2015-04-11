@@ -11,6 +11,11 @@
                 <td>{{offer.price | currency}}</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" align="right"><b>Total:</b> {{shoppingCart.getTotal() | currency}}</td>
+            </tr>
+        </tfoot>
     </table>
     <form class="form-inline">
         <div class="form-group pull-right">
