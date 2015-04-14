@@ -1,17 +1,14 @@
-portalControllers.controller("CatalogController", function($http, shoppingCart) {
-
+portalControllers.controller("CatalogController", ['$http','shoppingCart','$scope','$state', function($http, shoppingCart, $scope,$state) {
+    console.log('Start CatalogController');
     var catalog = this;
 
     this.totalItems = 0;
     this.itemsPerPage = 6;
-    this.currentPage = 1;
     this.maxSize = 5;
-
     this.maxRating = 5;
 
-    this.setPage = function(page) {
-        this.currentPage = page;
-    };
+
+    $scope.paramObj = {'currentPage': '1'};
 
     this.offers = [];
 
@@ -26,4 +23,23 @@ portalControllers.controller("CatalogController", function($http, shoppingCart) 
         catalog.categories = data;
     });
 
-});
+    $scope.test = function()
+    {
+        console.log('Test function: ' + $scope.currentPage);
+    }
+
+    this.setPageUrl = function()
+    {
+        console.log("setPageUrl CurrentPage: " + $scope.paramObj.currentPage);
+        $state.go('catalog.params', {'page':$scope.paramObj.currentPage});
+    };
+
+}]);
+
+portalControllers.controller('ParamsController', ['$scope','$state', function($scope, $state){
+    console.log('Start Page Controller');
+    $scope.paramObj.currentPage = $state.params.page;
+    console.log('Current Page on Child Controller = ' + $scope.paramObj.currentPage);
+
+
+}])
