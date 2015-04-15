@@ -5,25 +5,13 @@ portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$u
     $urlRouterProvider.otherwise('/catalog');
     $stateProvider
         .state('catalog', {
-            url: '/catalog',
-            views: {
-                'offers': {
-                    controller: 'CatalogController as catalogCtrl',
-                    templateUrl: 'views/portal-catalog.html'
-                }
-            }
-        })
-        .state('catalog.params', {
-            url: '?page&category&search',
-            views: {
-                'pagination' : {
-                    controller: 'ParamsController as paramsCtrl'
-                }
-            }
+            url: '/catalog?page&category&search',
+            controller: 'CatalogController as catalogCtrl',
+            templateUrl: 'views/portal-catalog.html'
         })
         .state('cart', {
             url: '/cart',
-            templateUrl: 'views/portal-cart.html'
-
+            templateUrl: 'views/portal-cart.html',
+            controller: 'CartController as cartCtrl'
         });
 }]);

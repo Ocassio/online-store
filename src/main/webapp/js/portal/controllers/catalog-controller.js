@@ -1,5 +1,5 @@
-portalControllers.controller("CatalogController", ['$http','shoppingCart','$scope','$state', function($http, shoppingCart, $scope,$state) {
-    console.log('Start CatalogController');
+portalControllers.controller("CatalogController", function($rootScope, $http, shoppingCart, $scope, $state) {
+
     var catalog = this;
 
     this.totalItems = 0;
@@ -7,14 +7,17 @@ portalControllers.controller("CatalogController", ['$http','shoppingCart','$scop
     this.maxSize = 5;
     this.maxRating = 5;
 
+    this.currentPage = 1;
 
-    $scope.paramObj = {'currentPage': '1'};
+    this.offersInitialized = false;
 
     this.offers = [];
 
     $http.get("/online-store/rest/offers/get").success(function(data) {
         catalog.offers = data;
         catalog.totalItems = data.length;
+
+        catalog.offersLoadingCallback();
     });
 
     this.categories = [];
@@ -23,23 +26,18 @@ portalControllers.controller("CatalogController", ['$http','shoppingCart','$scop
         catalog.categories = data;
     });
 
-    $scope.test = function()
-    {
-        console.log('Test function: ' + $scope.currentPage);
-    }
-
-    this.setPageUrl = function()
-    {
-        console.log("setPageUrl CurrentPage: " + $scope.paramObj.currentPage);
-        $state.go('catalog.params', {'page':$scope.paramObj.currentPage});
+    this.offersLoadingCallback = function() {
+        this.offersInitialized = true;
+        if ($state.params.page) {
+            this.currentPage = $state.params.page;
+        }
     };
 
-}]);
+    this.setPageUrl = function() {
+        if (this.offersInitialized) {
+            console.log("setPageUrl CurrentPage: " + this.currentPage);
+            $state.transitionTo('catalog', {'page': this.currentPage}, $rootScope.consts.routing.TRANSITION_WITHOUT_RELOADING_OPTIONS);
+        }
+    };
 
-portalControllers.controller('ParamsController', ['$scope','$state', function($scope, $state){
-    console.log('Start Page Controller');
-    $scope.paramObj.currentPage = $state.params.page;
-    console.log('Current Page on Child Controller = ' + $scope.paramObj.currentPage);
-
-
-}])
+});
