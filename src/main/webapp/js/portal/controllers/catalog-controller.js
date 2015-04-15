@@ -35,7 +35,6 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
 
     this.setPageUrl = function() {
         if (this.offersInitialized) {
-            console.log("setPageUrl CurrentPage: " + this.currentPage);
             $state.transitionTo('catalog', {'page': this.currentPage}, $rootScope.consts.routing.TRANSITION_WITHOUT_RELOADING_OPTIONS);
         }
     };
