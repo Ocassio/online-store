@@ -10,6 +10,7 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
     this.currentPage = 1;
 
     this.offersInitialized = false;
+    this.categoriesInitialized = false;
 
     this.offers = [];
 
@@ -36,13 +37,14 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
     };
 
     this.categoriesLoadedCallback = function() {
+        this.categoriesInitialized = true;
         if ($state.params.category) {
             this.currentCategory = $state.params.category;
         }
     };
 
     this.setPageUrl = function() {
-        if (this.offersInitialized) {
+        if (this.offersInitialized && this.categoriesInitialized) {
             var params = {
                 page: this.currentPage,
                 category: this.currentCategory
