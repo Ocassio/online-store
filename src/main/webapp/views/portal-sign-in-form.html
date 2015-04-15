@@ -23,6 +23,6 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-default pull-left" ng-click="showSignUpForm()">Sign Up</button>
-    <button class="btn btn-success" ng-disabled="signInForm.$invalid" ng-click="submit(signInForm)">OK</button>
+    <button class="btn btn-success" ng-disabled="signInForm.$invalid || disableSubmitButton" ng-click="submit(signInForm)">OK</button>
     <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
 </div>

@@ -2,6 +2,8 @@ portalControllers.controller("CartController", function($modal, shoppingCart) {
 
     this.selectedOffer = null;
 
+    this.removeSelectedDisabled = false;
+
     this.clear = function() {
         var dialog = $modal.open({
             templateUrl: "views/portal-cart-clear-confirm.html",
@@ -30,9 +32,14 @@ portalControllers.controller("CartController", function($modal, shoppingCart) {
 
     this.removeSelected = function() {
         if (this.selectedOffer) {
-            shoppingCart.remove(this.selectedOffer);
-            this.selectedOffer = null;
+            this.removeSelectedDisabled = true;
+            shoppingCart.remove(this.selectedOffer).success(this.onRemoved.bind(this));
         }
+    };
+
+    this.onRemoved = function() {
+        this.selectedOffer = null;
+        this.removeSelectedDisabled = false;
     };
 
 });

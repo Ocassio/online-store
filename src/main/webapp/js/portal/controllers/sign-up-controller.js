@@ -1,9 +1,13 @@
 portalControllers.controller("SignUpController", function($scope, $http, $modalInstance) {
 
+    $scope.disableSubmitButton = false;
+
     $scope.submit = function(form) {
+
         $scope.closeAllAlerts();
 
         if (form.$valid) {
+            $scope.disableSubmitButton = true;
             var path = "/online-store/rest/auth/signUp";
             var params = {
                 email: form.email.$modelValue,
@@ -21,6 +25,7 @@ portalControllers.controller("SignUpController", function($scope, $http, $modalI
                 } else {
                     $scope.addAlert('danger', "Something went wrong");
                 }
+                $scope.disableSubmitButton = false;
             });
         }
     };

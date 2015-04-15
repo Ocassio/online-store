@@ -1,5 +1,7 @@
 portalControllers.controller("SignInController", function($scope, $http, $modal, $modalInstance) {
 
+    $scope.disableSubmitButton = false;
+
     $scope.submit = function(form) {
         $scope.closeAllAlerts();
 
@@ -10,6 +12,7 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
                 password: CryptoJS.SHA256(form.password.$modelValue).toString()
             };
 
+            $scope.disableSubmitButton = true;
             $http.put(path, params).success(function(response) {
                 if (response.success) {
                     $scope.addAlert('success', "You've been successfully signed in");
@@ -18,6 +21,7 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
                 } else {
                     $scope.addAlert('danger', "Something went wrong");
                 }
+                $scope.disableSubmitButton = false;
             });
         }
     };
