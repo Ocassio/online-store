@@ -24,6 +24,8 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
 
     $http.get("/online-store/rest/categories/get").success(function(data) {
         catalog.categories = data;
+
+        catalog.categoriesLoadedCallback();
     });
 
     this.offersLoadingCallback = function() {
@@ -33,10 +35,28 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
         }
     };
 
-    this.setPageUrl = function() {
-        if (this.offersInitialized) {
-            $state.transitionTo('catalog', {'page': this.currentPage}, $rootScope.consts.routing.TRANSITION_WITHOUT_RELOADING_OPTIONS);
+    this.categoriesLoadedCallback = function() {
+        if ($state.params.category) {
+            this.currentCategory = $state.params.category;
         }
     };
+
+    this.setPageUrl = function() {
+        if (this.offersInitialized) {
+            var params = {
+                page: this.currentPage,
+                category: this.currentCategory
+            };
+            $state.transitionTo('catalog', params, $rootScope.consts.routing.TRANSITION_WITHOUT_RELOADING_OPTIONS);
+        }
+    };
+
+    this.getCurrentCategoryForFilter = function() {
+        if (this.currentCategory) {
+            return this.currentCategory;
+        }
+
+        return "!null";
+    }
 
 });
