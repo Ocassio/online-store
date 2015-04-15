@@ -21,8 +21,10 @@
                         <p class="text-justify">{{offer.description}}</p>
                     </div>
                     <div class="btn-group btn-group-justified">
-                        <a class="btn btn-success" ng-hide="shoppingCart.isInCart(offer)" ng-click="shoppingCart.add(offer)" role="button">Add to Cart</a>
-                        <a class="btn btn-danger" ng-show="shoppingCart.isInCart(offer)" ng-click="shoppingCart.remove(offer)" role="button">Remove</a>
+                        <a id="offer-add-btn-{{offer.id}}" class="btn btn-success" ng-hide="shoppingCart.isInCart(offer)"
+                           ng-click="catalogCtrl.addToCart(offer)" ng-disabled="offer.readOnly" role="button">Add to Cart</a>
+                        <a id="offer-remove-btn-{{offer.id}}" class="btn btn-danger" ng-show="shoppingCart.isInCart(offer)"
+                           ng-click="catalogCtrl.removeFromCart(offer)" ng-disabled="offer.readOnly" role="button">Remove</a>
                     </div>
                 </div>
             </div>

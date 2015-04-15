@@ -59,6 +59,24 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
         }
 
         return "!null";
-    }
+    };
+
+    this.addToCart = function(offer) {
+        this.disableOfferButton(offer);
+        shoppingCart.add(offer).success(this.enableOfferButton.bind(this, offer));
+    };
+
+    this.removeFromCart = function(offer) {
+        this.disableOfferButton(offer);
+        shoppingCart.remove(offer).success(this.enableOfferButton.bind(this, offer));
+    };
+
+    this.enableOfferButton = function(offer) {
+        offer.readOnly = false;
+    };
+
+    this.disableOfferButton = function(offer) {
+        offer.readOnly = true;
+    };
 
 });

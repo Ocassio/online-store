@@ -5,7 +5,7 @@ portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$u
     $urlRouterProvider.otherwise('/catalog');
     $stateProvider
         .state('catalog', {
-            url: '/catalog?page&category&search',
+            url: '/catalog?page&category',
             controller: 'CatalogController as catalogCtrl',
             templateUrl: 'views/portal-catalog.html'
         })

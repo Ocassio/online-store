@@ -15,18 +15,18 @@ portalServices.factory("shoppingCart", function($http) {
             var path = "/online-store/rest/cart/add/" + offer.id;
             var params = {count: count};
 
-            $http.get(path, params).success(this.onOfferAdded.bind(this, offer));
+            return $http.get(path, params).success(this.onOfferAdded.bind(this, offer));
         },
 
         remove: function(offer, count) {
             var path = "/online-store/rest/cart/remove/" + offer.id;
             var params = {count: count};
 
-            $http.get(path, params).success(this.onOfferRemoved.bind(this, offer));
+            return $http.get(path, params).success(this.onOfferRemoved.bind(this, offer));
         },
 
         clear: function() {
-            $http.get("/online-store/rest/cart/clear").success(this.onClear.bind(this));
+            return $http.get("/online-store/rest/cart/clear").success(this.onClear.bind(this));
         },
 
         isInCart: function(offer) {
