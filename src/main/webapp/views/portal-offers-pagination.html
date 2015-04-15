@@ -1,5 +1,5 @@
 <div class="text-center">
     <pagination class="text-center" total-items="catalogCtrl.filteredOffers.length" ng-model="catalogCtrl.currentPage"
-                max-size="catalogCtrl.maxSize" items-per-page="catalogCtrl.itemsPerPage">
+                max-size="catalogCtrl.maxSize" items-per-page="catalogCtrl.itemsPerPage" ng-change="catalogCtrl.setPageUrl()">
     </pagination>
 </div>

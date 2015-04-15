@@ -1,4 +1,20 @@
-portalControllers.controller("PortalController", function($scope, $location, $modal, shoppingCart) {
+portalControllers.controller("PortalController", function($rootScope, $scope, $location, $modal, shoppingCart) {
+
+    /**
+     * ------------------------------------------------------------------
+     * ---------             Global constants                   ---------
+     * ------------------------------------------------------------------
+     */
+
+    $rootScope.consts = {
+        routing: {
+            TRANSITION_WITHOUT_RELOADING_OPTIONS: { notify: false, location: true }
+        }
+    };
+
+    /**
+     * ------------------------------------------------------------------
+     */
 
     $scope.shoppingCart = shoppingCart;
 

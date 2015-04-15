@@ -1,18 +1,17 @@
-var portal = angular.module("portal", ["ui.bootstrap", "ngRoute",
+var portal = angular.module("portal", ["ui.bootstrap", "ui.router",
     "portal.controllers", "portal.filters", "portal.directives", "portal.services"]);
 
-portal.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/',
-        {
-            templateUrl: 'views/portal-catalog.html',
-            controller: 'CatalogController',
-            controllerAs: 'catalogCtrl'
+portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
+    $urlRouterProvider.otherwise('/catalog');
+    $stateProvider
+        .state('catalog', {
+            url: '/catalog?page&category&search',
+            controller: 'CatalogController as catalogCtrl',
+            templateUrl: 'views/portal-catalog.html'
         })
-        .when('/cart',
-        {
+        .state('cart', {
+            url: '/cart',
             templateUrl: 'views/portal-cart.html',
-            controller: "CartController",
-            controllerAs: "cartCtrl"
-        })
-        .otherwise({redirectTo: '/'});
+            controller: 'CartController as cartCtrl'
+        });
 }]);
