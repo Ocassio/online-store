@@ -16,6 +16,8 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $l
      * ------------------------------------------------------------------
      */
 
+    $scope.user = user;
+
     $scope.shoppingCart = shoppingCart;
 
     var portal = this;
@@ -34,9 +36,12 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $l
         });
     };
 
+    this.signOut = function() {
+        user.signOut();
+    };
+
     user.init().success(function() {
         console.log(user.info);
     });
-
 
 });

@@ -38,6 +38,12 @@ public class AuthenticationController
         return new ResponseModel(true);
     }
 
+    @RequestMapping("/signOut")
+    public void signOut()
+    {
+        userHolder.setUser(null);
+    }
+
     private ResponseModel signIn(String email, String password)
     {
         User user = userService.getUser(email, password);

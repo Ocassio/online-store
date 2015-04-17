@@ -48,6 +48,12 @@ portalServices.factory("user", function($http) {
             return promise;
         },
 
+        signOut: function() {
+            return $http.put("/online-store/rest/auth/signOut").success(function() {
+                this.info = null;
+            }.bind(this));
+        },
+
         /**
          * ------------------------------------------------------------------
          * ---------              Private methods                   ---------

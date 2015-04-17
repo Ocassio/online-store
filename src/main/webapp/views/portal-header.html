@@ -17,7 +17,8 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <button class="btn btn-success btn-header" ng-click="portalCtrl.showSignInForm()">Sign In</button>
+                    <button ng-hide="user.isSignedIn()" class="btn btn-success btn-header" ng-click="portalCtrl.showSignInForm()">Sign In</button>
+                    <button ng-show="user.isSignedIn()" class="btn btn-danger btn-header" ng-click="portalCtrl.signOut()">Sign Out</button>
                 </div>
             </div>
         </form>
