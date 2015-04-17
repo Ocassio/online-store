@@ -1,4 +1,4 @@
-portalControllers.controller("PortalController", function($rootScope, $scope, $location, $modal, shoppingCart) {
+portalControllers.controller("PortalController", function($rootScope, $scope, $location, $modal, shoppingCart, user) {
 
     /**
      * ------------------------------------------------------------------
@@ -33,5 +33,10 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $l
             size: "sm"
         });
     };
+
+    user.init().success(function() {
+        console.log(user.info);
+    });
+
 
 });

@@ -1,4 +1,4 @@
-portalControllers.controller("SignInController", function($scope, $http, $modal, $modalInstance) {
+portalControllers.controller("SignInController", function($scope, $http, $modal, $modalInstance, user) {
 
     $scope.disableSubmitButton = false;
 
@@ -6,24 +6,20 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
         $scope.closeAllAlerts();
 
         if (form.$valid) {
-            var path = "/online-store/rest/auth/signIn";
-            var params = {
-                email: form.email.$modelValue,
-                password: CryptoJS.SHA256(form.password.$modelValue).toString()
-            };
-
             $scope.disableSubmitButton = true;
-            $http.put(path, params).success(function(response) {
-                if (response.success) {
-                    $scope.addAlert('success', "You've been successfully signed in");
-                } else if (response.error) {
-                    $scope.addAlert('danger', response.error);
-                } else {
-                    $scope.addAlert('danger', "Something went wrong");
-                }
-                $scope.disableSubmitButton = false;
-            });
+            user.signIn(form.email.$modelValue, form.password.$modelValue).success($scope.onSubmit);
         }
+    };
+
+    $scope.onSubmit = function(response) {
+        if (response.success) {
+            $scope.addAlert('success', "You've been successfully signed in");
+        } else if (response.error) {
+            $scope.addAlert('danger', response.error);
+        } else {
+            $scope.addAlert('danger', "Something went wrong");
+        }
+        $scope.disableSubmitButton = false;
     };
 
     $scope.cancel = function() {

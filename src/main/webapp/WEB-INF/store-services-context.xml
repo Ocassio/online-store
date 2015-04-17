@@ -21,11 +21,14 @@
     <beans profile="development">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceStub"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
+        <bean id="userService" class="ru.bpr.onlinestore.portal.services.user.UserServiceStub"/>
     </beans>
 
     <beans profile="production">
         <bean id="catalogService" class="ru.bpr.onlinestore.portal.services.catalog.CatalogServiceImpl"/>
         <bean id="shoppingCartService" class="ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartServiceImpl"/>
+        <bean id="userService" class="ru.bpr.onlinestore.portal.services.user.UserServiceImpl"/>
+
         <bean id="categoryLoadingService" class="ru.bpr.onlinestore.portal.services.loading.CategoryLoadingServiceImpl"/>
         <bean id="offerLoadingService" class="ru.bpr.onlinestore.portal.services.loading.OfferLoadingServiceImpl"/>
 

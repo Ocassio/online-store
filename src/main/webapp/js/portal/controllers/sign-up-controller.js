@@ -1,4 +1,4 @@
-portalControllers.controller("SignUpController", function($scope, $http, $modalInstance) {
+portalControllers.controller("SignUpController", function($scope, $http, $modalInstance, user) {
 
     $scope.disableSubmitButton = false;
 
@@ -8,25 +8,18 @@ portalControllers.controller("SignUpController", function($scope, $http, $modalI
 
         if (form.$valid) {
             $scope.disableSubmitButton = true;
-            var path = "/online-store/rest/auth/signUp";
-            var params = {
-                email: form.email.$modelValue,
-                password: CryptoJS.SHA256(form.password.$modelValue).toString(),
-                name: form.name.$modelValue,
-                surname: form.surname.$modelValue,
-                address: form.address.$modelValue
-            };
-
-            $http.put(path, params).success(function(response) {
-                if (response.success) {
-                    $scope.addAlert('success', "You've been successfully signed up");
-                } else if (response.error) {
-                    $scope.addAlert('danger', response.error);
-                } else {
-                    $scope.addAlert('danger', "Something went wrong");
-                }
-                $scope.disableSubmitButton = false;
-            });
+            user.signUp(form.email.$modelValue, form.password.$modelValue,
+                form.name.$modelValue, form.surname.$modelValue, form.address.$modelValue)
+                .success(function(response) {
+                    if (response.success) {
+                        $scope.addAlert('success', "You've been successfully signed up");
+                    } else if (response.error) {
+                        $scope.addAlert('danger', response.error);
+                    } else {
+                        $scope.addAlert('danger', "Something went wrong");
+                    }
+                 $scope.disableSubmitButton = false;
+                });
         }
     };
 
