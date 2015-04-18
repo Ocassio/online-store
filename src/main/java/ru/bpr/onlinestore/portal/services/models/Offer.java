@@ -1,18 +1,38 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "offers")
 public class Offer
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @Column(name = "price", nullable = false)
     private int price;
+
+
+    @ManyToOne
+    @JoinColumn(name = "category", referencedColumnName = "id", nullable = false)
     private Category category;
 
-    @Id
-    @Column(name = "id")
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
+    private List<Rating> ratings;
+
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
+    private List<SalesOrderEntry> salesOrderEntries;
+
     public int getId()
     {
         return id;
@@ -23,8 +43,6 @@ public class Offer
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName()
     {
         return name;
@@ -35,8 +53,16 @@ public class Offer
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "price")
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
     public int getPrice()
     {
         return price;
@@ -47,32 +73,6 @@ public class Offer
         this.price = price;
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Offer offer = (Offer) o;
-
-        if (id != offer.id) return false;
-        if (price != offer.price) return false;
-        if (name != null ? !name.equals(offer.name) : offer.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + price;
-        return result;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "category", referencedColumnName = "id", nullable = false)
     public Category getCategory()
     {
         return category;
@@ -81,5 +81,25 @@ public class Offer
     public void setCategory(Category category)
     {
         this.category = category;
+    }
+
+    public List<Rating> getRatings()
+    {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings)
+    {
+        this.ratings = ratings;
+    }
+
+    public List<SalesOrderEntry> getSalesOrderEntries()
+    {
+        return salesOrderEntries;
+    }
+
+    public void setSalesOrderEntries(List<SalesOrderEntry> salesOrderEntries)
+    {
+        this.salesOrderEntries = salesOrderEntries;
     }
 }

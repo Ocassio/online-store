@@ -3,16 +3,25 @@ package ru.bpr.onlinestore.portal.services.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sales_order_entries", schema = "", catalog = "mydb")
+@Table(name = "sales_order_entries")
 public class SalesOrderEntry
 {
-    private int id;
-    private int count;
-    private Offer offer;
-    private SalesOrders salesOrder;
-
     @Id
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", nullable = false)
+    private int id;
+
+    @Column(name = "count", nullable = false)
+    private int count;
+
+    @JoinColumn(name = "offer", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Offer offer;
+
+    @JoinColumn(name = "sales_order", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private SalesOrder salesOrder;
+
     public int getId()
     {
         return id;
@@ -23,8 +32,6 @@ public class SalesOrderEntry
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "count")
     public int getCount()
     {
         return count;
@@ -35,30 +42,6 @@ public class SalesOrderEntry
         this.count = count;
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        SalesOrderEntry that = (SalesOrderEntry) o;
-
-        if (count != that.count) return false;
-        if (id != that.id) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = id;
-        result = 31 * result + count;
-        return result;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "offer", referencedColumnName = "id", nullable = false)
     public Offer getOffer()
     {
         return offer;
@@ -69,14 +52,12 @@ public class SalesOrderEntry
         this.offer = offer;
     }
 
-    @OneToOne
-    @JoinColumn(name = "sales_order", referencedColumnName = "id", nullable = false)
-    public SalesOrders getSalesOrder()
+    public SalesOrder getSalesOrder()
     {
         return salesOrder;
     }
 
-    public void setSalesOrder(SalesOrders salesOrder)
+    public void setSalesOrder(SalesOrder salesOrder)
     {
         this.salesOrder = salesOrder;
     }

@@ -8,7 +8,7 @@ import ru.bpr.onlinestore.portal.services.models.Offer;
 
 import java.lang.Override;import java.util.List;
 
-public class OfferLoadingServiceImpl implements OfferLoadingService
+public class OfferOperationServiceImpl implements OfferOperationService
 {
     @Autowired(required = false)
     private SessionFactory sessionFactory;
@@ -22,13 +22,30 @@ public class OfferLoadingServiceImpl implements OfferLoadingService
     }
 
     @Override
-    public Offer loadOfferById(int id)
+    public Offer loadById(int id)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Offer where id = :id");
-        query.setParameter("id", id);
-        return (Offer)query.list().get(0);
+        return (Offer)session.load(Offer.class, id);
     }
 
+    @Override
+    public void add(Offer offer)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(offer);
+    }
 
+    @Override
+    public void update(Offer offer)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(offer);
+    }
+
+    @Override
+    public void delete(Offer offer)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(offer);
+    }
 }

@@ -19,7 +19,7 @@ public class AuthenticationController
     @Autowired
     private UserHolder userHolder;
     
-    @Autowired
+    @Autowired(required = false)
     private UserService userService;
 
     @RequestMapping(value = "/signIn", method = RequestMethod.PUT)

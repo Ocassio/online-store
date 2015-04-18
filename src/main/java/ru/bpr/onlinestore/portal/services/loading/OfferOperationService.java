@@ -4,9 +4,15 @@ import ru.bpr.onlinestore.portal.services.models.Offer;
 
 import java.util.List;
 
-public interface OfferLoadingService
+public interface OfferOperationService
 {
     List<Offer> loadOffers();
 
-    Offer loadOfferById(int id);
+    Offer loadById(int id);
+
+    void add(Offer offer);
+
+    void update(Offer offer);
+
+    void delete(Offer offer);
 }

@@ -9,7 +9,7 @@ import ru.bpr.onlinestore.portal.services.models.Category;
 
 import java.lang.Override;import java.util.List;
 
-public class CategoryLoadingServiceImpl implements CategoryLoadingService
+public class CategoryOperationServiceImpl implements CategoryOperationService
 {
     @Autowired(required = false)
     private SessionFactory sessionFactory;
@@ -23,11 +23,30 @@ public class CategoryLoadingServiceImpl implements CategoryLoadingService
     }
 
     @Override
-    public Category loadCategoryById(int id)
+    public Category loadById(int id)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Category where id = :id");
-        query.setParameter("id", id);
-        return (Category) query.list().get(0);
+        return (Category)session.load(Category.class, id);
+    }
+
+    @Override
+    public void add(Category category)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(category);
+    }
+
+    @Override
+    public void update(Category category)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(category);
+    }
+
+    @Override
+    public void delete(Category category)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(category);
     }
 }

@@ -1,24 +1,24 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
 public class Category
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
+
+    @Basic
+    @Column(name = "name")
     private String name;
 
-    public Category()
-    {}
-    public Category(int id, String name)
-    {
-        this.id = id;
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "category")
+    private List<Offer> offers;
 
-    @Id
-    @Column(name = "id")
     public int getId()
     {
         return id;
@@ -29,8 +29,6 @@ public class Category
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName()
     {
         return name;
@@ -41,25 +39,13 @@ public class Category
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o)
+    public List<Offer> getOffers()
     {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Category that = (Category) o;
-
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
+        return offers;
     }
 
-    @Override
-    public int hashCode()
+    public void setOffers(List<Offer> offers)
     {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        this.offers = offers;
     }
 }

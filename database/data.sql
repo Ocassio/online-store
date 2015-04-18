@@ -9,14 +9,14 @@ insert into users values (1, 'email1@yandex.ru', '123', 'Valentin', 'Goncharov',
 insert into users values (2, 'email2@yandex.ru', '123', 'Alexander', 'Shindin', 'XZ');
 insert into users values (3, 'email3@yandex.ru', '123', 'Alexander', 'Ionov', 'XZ');
 
-insert into OFFERS values(1, 'Offer1', 300, 1);
-insert into OFFERS values(2, 'Offer2', 300, 1);
-insert into OFFERS values(3, 'Offer3', 200, 1);
-insert into OFFERS values(4, 'Offer4', 200, 2);
-insert into OFFERS values(5, 'Offer5', 200, 2);
-insert into OFFERS values(6, 'Offer6', 200, 3);
-insert into OFFERS values(7, 'Offer7', 200, 3);
-insert into OFFERS values(8, 'Offer8', 200, 4);
+insert into OFFERS values(1, 'Offer1', 'description1', 300, 1);
+insert into OFFERS values(2, 'Offer2', 'description2', 300, 1);
+insert into OFFERS values(3, 'Offer3', 'description3', 200, 1);
+insert into OFFERS values(4, 'Offer4', 'description4', 200, 2);
+insert into OFFERS values(5, 'Offer5', 'description5', 200, 2);
+insert into OFFERS values(6, 'Offer6', 'description6', 200, 3);
+insert into OFFERS values(7, 'Offer7', 'description7', 200, 3);
+insert into OFFERS values(8, 'Offer8', 'description8',200, 4);
 
 Insert into ratings values(1, 1, 1, 5, 'shit');
 Insert into ratings values(2, 1, 1, 5, 'shit');

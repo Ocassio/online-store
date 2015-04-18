@@ -1,20 +1,38 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User
 {
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true)
     private int id;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "surname")
     private String surname;
+
+    @Column(name = "address", unique = true)
     private String address;
 
-    @Id
-    @Column(name = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Rating> rating;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<SalesOrder> salesOrders;
+
     public int getId()
     {
         return id;
@@ -25,8 +43,6 @@ public class User
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "email")
     public String getEmail()
     {
         return email;
@@ -37,8 +53,6 @@ public class User
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "password")
     public String getPassword()
     {
         return password;
@@ -49,8 +63,6 @@ public class User
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "name")
     public String getName()
     {
         return name;
@@ -61,8 +73,6 @@ public class User
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
     public String getSurname()
     {
         return surname;
@@ -73,8 +83,6 @@ public class User
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "address")
     public String getAddress()
     {
         return address;
@@ -85,33 +93,31 @@ public class User
         this.address = address;
     }
 
-    @Override
-    public boolean equals(Object o)
+    public List<Rating> getRating()
     {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (id != user.id) return false;
-        if (address != null ? !address.equals(user.address) : user.address != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-
-        return true;
+        return rating;
     }
 
-    @Override
-    public int hashCode()
+    public void setRating(List<Rating> rating)
     {
-        int result = id;
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        return result;
+        this.rating = rating;
+    }
+
+    public List<SalesOrder> getSalesOrders()
+    {
+        return salesOrders;
+    }
+
+    public void setSalesOrders(List<SalesOrder> salesOrders)
+    {
+        this.salesOrders = salesOrders;
     }
 }
+/**
+ *`id` INT NOT NULL AUTO_INCREMENT,
+ * `email` VARCHAR(50) NOT NULL,
+ * `password` VARCHAR(50) NOT NULL,
+ * `name` VARCHAR(50) NULL,
+ * `surname` VARCHAR(50) NULL,
+ * `address` VARCHAR(255) NULL,
+ */

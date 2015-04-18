@@ -1,16 +1,16 @@
 package ru.bpr.onlinestore.portal.services.catalog;
 
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.bpr.onlinestore.portal.converters.CategoryViewModelConverter;
+import ru.bpr.onlinestore.portal.converters.OfferViewModelConverter;
 import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
-import ru.bpr.onlinestore.portal.services.loading.CategoryLoadingService;
-import ru.bpr.onlinestore.portal.services.loading.OfferLoadingService;
+import ru.bpr.onlinestore.portal.services.loading.CategoryOperationService;
+import ru.bpr.onlinestore.portal.services.loading.OfferOperationService;
 import ru.bpr.onlinestore.portal.services.models.Category;
+import ru.bpr.onlinestore.portal.services.models.Offer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,31 +20,42 @@ import java.util.List;
 public class CatalogServiceImpl implements CatalogService
 {
     @Autowired(required = false)
-    CategoryLoadingService categoryLoadingService;
+    CategoryOperationService categoryOperationService;
     @Autowired(required = false)
-    OfferLoadingService offerLoadingService;
-
-    List<OfferViewModel> offers;
+    OfferOperationService offerOperationService;
+    @Autowired
+    OfferViewModelConverter offerViewModelConverter;
+    @Autowired
+    CategoryViewModelConverter categoryViewModelConverter;
 
     public List<OfferViewModel> getOffers()
     {
-        categoryLoadingService.loadCategories();
-        offerLoadingService.loadOffers();
-        offers = new ArrayList<OfferViewModel>();
-        offers.add(new OfferViewModel("3", "Offer 1", "1", "Offer 1 description", "$1000", "4"));
-        offers.add(new OfferViewModel("2", "Offer 2", "2", "Offer 2 description", "$2000", "3"));
 
-        return offers;
+        List<Offer> offers = offerOperationService.loadOffers();
+        List<OfferViewModel> offerViewModels = new ArrayList<OfferViewModel>();
+        for(Offer offer : offers)
+        {
+            OfferViewModel offerViewModel = offerViewModelConverter.convert(offer);
+            offerViewModels.add(offerViewModel);
+        }
+        return offerViewModels;
     }
 
     public List<CategoryViewModel> getCategories()
     {
-        return new ArrayList<CategoryViewModel>();
+        List<Category> categories = categoryOperationService.loadCategories();
+        List<CategoryViewModel> categoryViewModels = new ArrayList<CategoryViewModel>();
+        for(Category category : categories)
+        {
+            categoryViewModels.add(categoryViewModelConverter.convert(category));
+        }
+        return categoryViewModels;
     }
 
     @Override
     public OfferViewModel getOffer(String offerId)
     {
-        return offers.get(Integer.parseInt(offerId));
+        Offer offer = offerOperationService.loadById(Integer.valueOf(offerId));
+        return offerViewModelConverter.convert(offer);
     }
 }
