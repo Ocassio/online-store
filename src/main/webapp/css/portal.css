@@ -25,7 +25,6 @@
     padding-right: 0px;
 }
 
-
 .table-hover tbody tr {
     cursor: pointer;
 }
@@ -33,6 +32,11 @@
 .offer-panel {
     border-color: #999999;
     border-width: 1px;
+}
+
+.offers-container {
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .offer-container {
