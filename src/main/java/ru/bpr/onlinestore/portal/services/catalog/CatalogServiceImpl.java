@@ -1,10 +1,9 @@
 package ru.bpr.onlinestore.portal.services.catalog;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bpr.onlinestore.portal.converters.CategoryViewModelConverter;
-import ru.bpr.onlinestore.portal.converters.OfferViewModelConverter;
 import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.loading.CategoryOperationService;
@@ -20,35 +19,40 @@ import java.util.List;
 public class CatalogServiceImpl implements CatalogService
 {
     @Autowired(required = false)
-    CategoryOperationService categoryOperationService;
-    @Autowired(required = false)
-    OfferOperationService offerOperationService;
-    @Autowired
-    OfferViewModelConverter offerViewModelConverter;
-    @Autowired
-    CategoryViewModelConverter categoryViewModelConverter;
+    private CategoryOperationService categoryOperationService;
 
+    @Autowired(required = false)
+    private OfferOperationService offerOperationService;
+
+    @Autowired
+    private ConversionService conversionService;
+
+    @Override
     public List<OfferViewModel> getOffers()
     {
-
         List<Offer> offers = offerOperationService.loadOffers();
+
         List<OfferViewModel> offerViewModels = new ArrayList<OfferViewModel>();
         for(Offer offer : offers)
         {
-            OfferViewModel offerViewModel = offerViewModelConverter.convert(offer);
+            OfferViewModel offerViewModel = conversionService.convert(offer, OfferViewModel.class);
             offerViewModels.add(offerViewModel);
         }
+
         return offerViewModels;
     }
 
+    @Override
     public List<CategoryViewModel> getCategories()
     {
         List<Category> categories = categoryOperationService.loadCategories();
+
         List<CategoryViewModel> categoryViewModels = new ArrayList<CategoryViewModel>();
         for(Category category : categories)
         {
-            categoryViewModels.add(categoryViewModelConverter.convert(category));
+            categoryViewModels.add(conversionService.convert(category, CategoryViewModel.class));
         }
+
         return categoryViewModels;
     }
 
@@ -56,6 +60,6 @@ public class CatalogServiceImpl implements CatalogService
     public OfferViewModel getOffer(String offerId)
     {
         Offer offer = offerOperationService.loadById(Integer.valueOf(offerId));
-        return offerViewModelConverter.convert(offer);
+        return conversionService.convert(offer, OfferViewModel.class);
     }
 }

@@ -1,7 +1,6 @@
 package ru.bpr.onlinestore.portal.converters;
 
 import org.springframework.core.convert.converter.Converter;
-import ru.bpr.onlinestore.portal.exception.ConvertModelException;
 import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.services.models.Category;
 
@@ -9,15 +8,13 @@ public class CategoryViewModelConverter implements Converter<Category, CategoryV
 {
 
     @Override
-    public CategoryViewModel convert(Category category)
+    public CategoryViewModel convert(Category source)
     {
-        if (category == null)
-        {
-            throw new ConvertModelException("Error in covert");
-        }
-        CategoryViewModel categoryViewModel = new CategoryViewModel();
-        categoryViewModel.setId(String.valueOf(category.getId()));
-        categoryViewModel.setName(category.getName());
-        return categoryViewModel;
+        CategoryViewModel target = new CategoryViewModel();
+
+        target.setId(String.valueOf(source.getId()));
+        target.setName(source.getName());
+
+        return target;
     }
 }

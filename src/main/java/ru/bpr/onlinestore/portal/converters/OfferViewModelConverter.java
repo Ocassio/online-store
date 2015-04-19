@@ -1,8 +1,6 @@
 package ru.bpr.onlinestore.portal.converters;
 
-
 import org.springframework.core.convert.converter.Converter;
-import ru.bpr.onlinestore.portal.exception.ConvertModelException;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.models.Offer;
 import ru.bpr.onlinestore.portal.services.models.Rating;
@@ -12,36 +10,32 @@ import java.util.List;
 public class OfferViewModelConverter implements Converter<Offer, OfferViewModel>
 {
     @Override
-    public OfferViewModel convert(Offer offer)
+    public OfferViewModel convert(Offer source)
     {
-        if (offer == null)
+        OfferViewModel target = new OfferViewModel();
+        target.setId(String.valueOf(source.getId()));
+        if (source.getRatings() != null) //TODO check if it really can be null
         {
-            throw new ConvertModelException("Error in covert");
+            target.setRating(Float.toString(calculateRating(source.getRatings())));
         }
-        OfferViewModel offerViewModel = new OfferViewModel();
-        offerViewModel.setId(String.valueOf(offer.getId()));
-        if (offer.getRatings() != null)
-        {
-            offerViewModel.setRating(calculateRating(offer.getRatings()));
-        }
-        offerViewModel.setName(offer.getName());
-        offerViewModel.setCategoryId(String.valueOf(offer.getCategory().getId()));
-        offerViewModel.setPrice(String.valueOf(offer.getPrice()));
-        offerViewModel.setDescription(offer.getDescription());
-        return offerViewModel;
+        target.setName(source.getName());
+        target.setCategoryId(String.valueOf(source.getCategory().getId()));
+        target.setPrice(String.valueOf(source.getPrice()));
+        target.setDescription(source.getDescription());
+
+        return target;
     }
 
-    private String calculateRating(List<Rating> ratings)
+    private float calculateRating(List<Rating> ratings)
     {
-        if (ratings.size() == 0)
-        {
-            return "0";
-        }
+        if (ratings.size() == 0) return 0;
+
         int sum = 0;
-        for(int i = 0; i < ratings.size(); i++)
+        for(Rating rating : ratings)
         {
-            sum += ratings.get(i).getRating();
+            sum += rating.getRating();
         }
-        return String.valueOf(sum / ratings.size());
+
+        return sum / ratings.size();
     }
 }

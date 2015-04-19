@@ -11,11 +11,34 @@ import java.util.Random;
 @Service
 public class CatalogServiceStub implements CatalogService
 {
-    List<OfferViewModel> offers;
+    private List<OfferViewModel> offers;
+    private List<CategoryViewModel> categories;
+
+    public CatalogServiceStub()
+    {
+        offers = generateOffers();
+        categories = generateCategories();
+    }
+
     public List<OfferViewModel> getOffers()
     {
+        return offers;
+    }
+
+    public List<CategoryViewModel> getCategories()
+    {
+        return categories;
+    }
+
+    public OfferViewModel getOffer(String offerId)
+    {
+        return offers.get(Integer.parseInt(offerId));
+    }
+
+    private List<OfferViewModel> generateOffers()
+    {
         Random random = new Random();
-        offers = new ArrayList<OfferViewModel>();
+        List<OfferViewModel> offers = new ArrayList<>();
         int countOffers = 20;
         for (int i = 1; i < countOffers; i++)
         {
@@ -25,9 +48,10 @@ public class CatalogServiceStub implements CatalogService
         return offers;
     }
 
-    public List<CategoryViewModel> getCategories()
+    private List<CategoryViewModel> generateCategories()
     {
         List<CategoryViewModel> categories = new ArrayList<CategoryViewModel>();
+
         categories.add(new CategoryViewModel("1", "Apps"));
         categories.add(new CategoryViewModel("2", "Games"));
         categories.add(new CategoryViewModel("3", "Movies"));
@@ -35,10 +59,5 @@ public class CatalogServiceStub implements CatalogService
         categories.add(new CategoryViewModel("5", "Newspapers"));
 
         return categories;
-    }
-
-    public OfferViewModel getOffer(String offerId)
-    {
-        return offers.get(Integer.parseInt(offerId));
     }
 }

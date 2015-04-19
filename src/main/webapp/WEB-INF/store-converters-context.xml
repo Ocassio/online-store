@@ -8,8 +8,6 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <!-- Here you can make reference on Converter<R, T> interface implementer bean
-                <ref bean="nameOfConverter"/>-->
             </set>
         </property>
     </bean>
@@ -17,7 +15,10 @@
     <bean id="customConvertersRegistrar" class="ru.bpr.onlinestore.spring.converters.CustomConvertersRegistrar">
         <property name="converters">
             <set>
+                <!-- Place our custom converters here -->
                 <bean class="ru.bpr.onlinestore.portal.converters.UserViewModelConverter"/>
+                <bean class="ru.bpr.onlinestore.portal.converters.CategoryViewModelConverter"/>
+                <bean class="ru.bpr.onlinestore.portal.converters.OfferViewModelConverter"/>
             </set>
         </property>
     </bean>
