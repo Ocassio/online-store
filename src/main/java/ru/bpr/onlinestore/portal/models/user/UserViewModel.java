@@ -1,4 +1,4 @@
-package ru.bpr.onlinestore.portal.models;
+package ru.bpr.onlinestore.portal.models.user;
 
 import java.io.Serializable;
 

@@ -49,9 +49,43 @@ portalServices.factory("user", function($http) {
         },
 
         signOut: function() {
-            return $http.put("/online-store/rest/auth/signOut").success(function() {
+            return $http.get("/online-store/rest/auth/signOut").success(function() {
                 this.info = null;
             }.bind(this));
+        },
+
+        update: function(email, name, surname, address) {
+            var path = "/online-store/rest/user/update";
+            var params = {
+                email: email,
+                name: name,
+                surname: surname,
+                address: address
+            };
+
+            var promise = $http.put(path, params).success(function(response) {
+                if (response.success) {
+                    this.loadCurrent();
+                }
+            }.bind(this));
+
+            return promise;
+        },
+
+        changePassword: function(password, oldPassword) {
+            var path = "/online-store/rest/user/changePassword";
+            var params = {
+                password: password,
+                oldPassword: oldPassword
+            };
+
+            var promise = $http.put(path, params).success(function(response) {
+                if (response.success) {
+                    this.loadCurrent();
+                }
+            }.bind(this));
+
+            return promise;
         },
 
         /**
@@ -76,7 +110,7 @@ portalServices.factory("user", function($http) {
 
     };
 
-    //service.init();
+    service.init();
 
     return service;
 });

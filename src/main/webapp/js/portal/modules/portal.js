@@ -13,5 +13,10 @@ portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$u
             url: '/cart',
             templateUrl: 'views/portal-cart.html',
             controller: 'CartController as cartCtrl'
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/portal-profile.html',
+            controller: 'ProfileController as profileCtrl'
         });
 }]);

@@ -1,7 +1,7 @@
 package ru.bpr.onlinestore.portal.converters;
 
 import org.springframework.core.convert.converter.Converter;
-import ru.bpr.onlinestore.portal.models.UserViewModel;
+import ru.bpr.onlinestore.portal.models.user.UserViewModel;
 import ru.bpr.onlinestore.portal.services.models.User;
 
 public class UserViewModelConverter implements Converter<User, UserViewModel>
