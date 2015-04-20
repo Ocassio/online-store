@@ -18,7 +18,18 @@
             <div class="form-group">
                 <div class="input-group">
                     <button ng-hide="user.isSignedIn()" class="btn btn-success btn-header" ng-click="portalCtrl.showSignInForm()">Sign In</button>
-                    <button ng-show="user.isSignedIn()" class="btn btn-danger btn-header" ng-click="portalCtrl.signOut()">Sign Out</button>
+                    <div class="dropdown" ng-show="user.isSignedIn()">
+                        <button class="btn btn-info dropdown-toggle btn-header" type="button" data-toggle="dropdown" aria-expanded="true">
+                            {{user.info.name}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="userDropdown">
+                            <li role="presentation"><a role="menuitem" tabindex="-1">Profile</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1">Dashboard</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation" ng-click="portalCtrl.signOut()"><a role="menuitem" tabindex="-1">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </form>

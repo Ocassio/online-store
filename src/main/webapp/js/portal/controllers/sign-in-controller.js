@@ -13,7 +13,7 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
 
     $scope.onSubmit = function(response) {
         if (response.success) {
-            $scope.addAlert('success', "You've been successfully signed in");
+            $modalInstance.close();
         } else if (response.error) {
             $scope.addAlert('danger', response.error);
         } else {

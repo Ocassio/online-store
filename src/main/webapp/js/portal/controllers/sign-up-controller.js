@@ -12,7 +12,7 @@ portalControllers.controller("SignUpController", function($scope, $http, $modalI
                 form.name.$modelValue, form.surname.$modelValue, form.address.$modelValue)
                 .success(function(response) {
                     if (response.success) {
-                        $scope.addAlert('success', "You've been successfully signed up");
+                        $modalInstance.close();
                     } else if (response.error) {
                         $scope.addAlert('danger', response.error);
                     } else {

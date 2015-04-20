@@ -21,7 +21,7 @@ portalServices.factory("user", function($http) {
             };
 
             var promise = $http.put(path, params).success(function(response) {
-                if (response.succcess) {
+                if (response.success) {
                     this.loadCurrent();
                 }
             }.bind(this));

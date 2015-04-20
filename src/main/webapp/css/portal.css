@@ -2,7 +2,7 @@
  * A place for custom portal CSS
  */
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* fix Angular UI pointer missing */
+.nav, .pagination, .carousel, .panel-title, .dropdown-menu a { cursor: pointer; } /* fix Angular UI pointer missing */
 
 .header-title {
     cursor: pointer;
