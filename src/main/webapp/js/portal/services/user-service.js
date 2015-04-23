@@ -22,7 +22,7 @@ portalServices.factory("user", function($http) {
 
             var promise = $http.put(path, params).success(function(response) {
                 if (response.success) {
-                    this.loadCurrent();
+                    this.info = response.data;
                 }
             }.bind(this));
 
@@ -41,7 +41,7 @@ portalServices.factory("user", function($http) {
 
             var promise = $http.put(path, params).success(function(response) {
                 if (response.success) {
-                    this.loadCurrent();
+                    this.info = response.data;
                 }
             }.bind(this));
 

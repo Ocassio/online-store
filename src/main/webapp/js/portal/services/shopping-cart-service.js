@@ -1,4 +1,4 @@
-portalServices.factory("shoppingCart", function($http) {
+portalServices.factory("shoppingCart", function($http, user) {
     var service =  {
 
         /**
@@ -8,6 +8,7 @@ portalServices.factory("shoppingCart", function($http) {
          */
 
         offers: [],
+        deliveryAddress: null,
 
         add: function(offer, count) {
             var path = "/online-store/rest/cart/add/" + offer.id;
@@ -41,6 +42,21 @@ portalServices.factory("shoppingCart", function($http) {
                 total += +this.offers[i].price;
             }
             return total;
+        },
+
+        isDeliveryAddressCustom: function() {
+            if (this.deliveryAddress && this.deliveryAddress !== user.info.address) {
+                return true;
+            }
+            return false;
+        },
+
+        getDeliveryAddress: function() {
+            if (this.deliveryAddress) {
+                return this.deliveryAddress;
+            } else {
+                return user.info.address;
+            }
         },
 
         /**

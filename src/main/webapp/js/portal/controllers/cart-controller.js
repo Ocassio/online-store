@@ -1,4 +1,4 @@
-portalControllers.controller("CartController", function($modal, shoppingCart) {
+portalControllers.controller("CartController", function($rootScope, $scope, $modal, shoppingCart, user, $state) {
 
     this.selectedOffer = null;
 
@@ -40,6 +40,18 @@ portalControllers.controller("CartController", function($modal, shoppingCart) {
     this.onRemoved = function() {
         this.selectedOffer = null;
         this.removeSelectedDisabled = false;
+    };
+
+    this.nextStep = function() {
+        $state.go('chooseAddress');
+    };
+
+    this.proceed = function() {
+        if (user.isSignedIn()) {
+             this.nextStep();
+        } else {
+            $scope.$emit($rootScope.consts.events.SHOW_SIGN_IN_FORM, this.nextStep);
+        }
     };
 
 });

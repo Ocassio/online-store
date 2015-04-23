@@ -25,13 +25,13 @@ public class UserController
     private ConversionService conversionService;
 
     @RequestMapping("/getCurrent")
-    private UserViewModel getCurrentUser()
+    public UserViewModel getCurrentUser()
     {
         return conversionService.convert(userHolder.getUser(), UserViewModel.class);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    private ResponseModel update(UserViewModel updateInfo)
+    public ResponseModel update(UserViewModel updateInfo)
     {
         //TODO update current user profile
 
@@ -39,7 +39,7 @@ public class UserController
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.PUT)
-    private ResponseModel changePassword(PasswordChangeViewModel updateInfo)
+    public ResponseModel changePassword(PasswordChangeViewModel updateInfo)
     {
         if (!userHolder.getUser().getPassword().equals(updateInfo.getOldPassword()))
         {

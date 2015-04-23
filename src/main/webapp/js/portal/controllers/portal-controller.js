@@ -9,6 +9,9 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $s
     $rootScope.consts = {
         routing: {
             TRANSITION_WITHOUT_RELOADING_OPTIONS: { notify: false, location: true }
+        },
+        events: {
+            SHOW_SIGN_IN_FORM: 'showSignInForm'
         }
     };
 
@@ -28,12 +31,14 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $s
 
     this.searchText = "";
 
-    this.showSignInForm = function() {
-        $modal.open({
+    this.showSignInForm = function(event, callback) {
+        var signInForm = $modal.open({
             templateUrl: "views/portal-sign-in-form.html",
             controller: "SignInController",
             size: "sm"
         });
+
+        signInForm.result.then(callback);
     };
 
     this.signOut = function() {
@@ -43,5 +48,7 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $s
             }
         });
     };
+
+    $scope.$on($rootScope.consts.events.SHOW_SIGN_IN_FORM, this.showSignInForm);
 
 });

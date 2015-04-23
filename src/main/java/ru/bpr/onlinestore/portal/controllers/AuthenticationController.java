@@ -17,6 +17,9 @@ import ru.bpr.onlinestore.portal.sessionbeans.UserHolder;
 public class AuthenticationController
 {
     @Autowired
+    private UserController userController;
+
+    @Autowired
     private UserHolder userHolder;
     
     @Autowired(required = false)
@@ -33,9 +36,9 @@ public class AuthenticationController
     {
         //TODO sign up user
 
-        signIn(signUpData.getEmail(), signUpData.getPassword());
+        ResponseModel response = signIn(signUpData.getEmail(), signUpData.getPassword());
 
-        return new ResponseModel(true);
+        return response;
     }
 
     @RequestMapping("/signOut")
@@ -49,6 +52,6 @@ public class AuthenticationController
         User user = userService.getUser(email, password);
         userHolder.setUser(user);
 
-        return new ResponseModel(true);
+        return new ResponseModel(true, userController.getCurrentUser());
     }
 }
