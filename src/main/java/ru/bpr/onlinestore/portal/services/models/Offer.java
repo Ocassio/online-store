@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -10,20 +11,18 @@ public class Offer
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private BigInteger id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", length = 255)
     private String description;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private double price;
 
-
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "category", referencedColumnName = "id", nullable = false)
     private Category category;
 
@@ -33,12 +32,12 @@ public class Offer
     @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
     private List<SalesOrderEntry> salesOrderEntries;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }
@@ -63,12 +62,12 @@ public class Offer
         this.description = description;
     }
 
-    public int getPrice()
+    public double getPrice()
     {
         return price;
     }
 
-    public void setPrice(int price)
+    public void setPrice(double price)
     {
         this.price = price;
     }

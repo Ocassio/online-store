@@ -11,6 +11,7 @@ import ru.bpr.onlinestore.portal.services.loading.OfferOperationService;
 import ru.bpr.onlinestore.portal.services.models.Category;
 import ru.bpr.onlinestore.portal.services.models.Offer;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class CatalogServiceImpl implements CatalogService
     @Override
     public OfferViewModel getOffer(String offerId)
     {
-        Offer offer = offerOperationService.loadById(Integer.valueOf(offerId));
+        Offer offer = offerOperationService.loadById(new BigInteger(offerId));
         return conversionService.convert(offer, OfferViewModel.class);
     }
 }

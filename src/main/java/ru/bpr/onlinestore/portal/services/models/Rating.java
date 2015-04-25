@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "ratings")
@@ -9,9 +10,9 @@ public class Rating
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private BigInteger id;
 
-    @Column(name = "rating", nullable = true)
+    @Column(name = "rating", nullable = false)
     private int rating;
 
     @Column(name = "comment")
@@ -25,12 +26,12 @@ public class Rating
     @JoinColumn(name = "offer", referencedColumnName = "id")
     private Offer offer;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }

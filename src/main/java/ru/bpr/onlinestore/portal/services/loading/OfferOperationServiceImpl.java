@@ -1,12 +1,13 @@
 package ru.bpr.onlinestore.portal.services.loading;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.bpr.onlinestore.portal.services.models.Offer;
 
-import java.lang.Override;import java.util.List;
+import java.lang.Override;
+import java.math.BigInteger;
+import java.util.List;
 
 public class OfferOperationServiceImpl implements OfferOperationService
 {
@@ -14,15 +15,15 @@ public class OfferOperationServiceImpl implements OfferOperationService
     private SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Offer> loadOffers()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Offer");
-        return query.list();
+        return session.createQuery("from Offer").list();
     }
 
     @Override
-    public Offer loadById(int id)
+    public Offer loadById(BigInteger id)
     {
         Session session = sessionFactory.getCurrentSession();
         return (Offer)session.load(Offer.class, id);

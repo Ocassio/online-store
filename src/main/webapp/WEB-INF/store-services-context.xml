@@ -29,6 +29,7 @@
         <bean id="userService" class="ru.bpr.onlinestore.portal.services.user.UserServiceImpl"/>
         <bean id="categoryOperationService" class="ru.bpr.onlinestore.portal.services.loading.CategoryOperationServiceImpl"/>
         <bean id="offerOperationService" class="ru.bpr.onlinestore.portal.services.loading.OfferOperationServiceImpl"/>
+        <bean id="userOperationService" class="ru.bpr.onlinestore.portal.services.loading.UserOperationServiceImpl"/>
 
         <tx:annotation-driven transaction-manager="transactionManager" />
 

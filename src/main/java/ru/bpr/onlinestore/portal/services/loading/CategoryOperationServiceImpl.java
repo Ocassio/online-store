@@ -1,13 +1,13 @@
 package ru.bpr.onlinestore.portal.services.loading;
 
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.bpr.onlinestore.portal.services.models.Category;
 
-import java.lang.Override;import java.util.List;
+import java.lang.Override;
+import java.math.BigInteger;
+import java.util.List;
 
 public class CategoryOperationServiceImpl implements CategoryOperationService
 {
@@ -15,15 +15,15 @@ public class CategoryOperationServiceImpl implements CategoryOperationService
     private SessionFactory sessionFactory;
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Category> loadCategories()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Category");
-        return query.list();
+        return session.createQuery("from Category").list();
     }
 
     @Override
-    public Category loadById(int id)
+    public Category loadById(BigInteger id)
     {
         Session session = sessionFactory.getCurrentSession();
         return (Category)session.load(Category.class, id);

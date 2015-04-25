@@ -38,7 +38,7 @@ public class CatalogServiceStub implements CatalogService
     private List<OfferViewModel> generateOffers()
     {
         Random random = new Random();
-        List<OfferViewModel> offers = new ArrayList<>();
+        List<OfferViewModel> offers = new ArrayList<OfferViewModel>();
         int countOffers = 20;
         for (int i = 1; i < countOffers; i++)
         {

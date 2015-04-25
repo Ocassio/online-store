@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 @Entity
 @Table(name = "sales_order_entries")
@@ -8,8 +9,8 @@ public class SalesOrderEntry
 {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
-    private int id;
+    @Column(name = "id")
+    private BigInteger id;
 
     @Column(name = "count", nullable = false)
     private int count;
@@ -22,12 +23,12 @@ public class SalesOrderEntry
     @ManyToOne(optional = false)
     private SalesOrder salesOrder;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }

@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -9,22 +10,22 @@ public class User
 {
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true)
-    private int id;
+    @Column(name = "id")
+    private BigInteger id;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, length = 50)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 50)
     private String password;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", length = 50)
     private String surname;
 
-    @Column(name = "address", unique = true)
+    @Column(name = "address", length = 255)
     private String address;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -33,12 +34,12 @@ public class User
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<SalesOrder> salesOrders;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }

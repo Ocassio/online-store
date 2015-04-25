@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 
 @Entity
@@ -10,21 +11,21 @@ public class Category
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private BigInteger id;
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @OneToMany(mappedBy = "category")
     private List<Offer> offers;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }

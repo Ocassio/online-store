@@ -1,6 +1,7 @@
 package ru.bpr.onlinestore.portal.services.models;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -10,22 +11,22 @@ public class SalesOrder
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private BigInteger id;
 
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user", referencedColumnName = "id")
     private User user;
 
-    public int getId()
+    public BigInteger getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(BigInteger id)
     {
         this.id = id;
     }

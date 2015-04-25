@@ -26,7 +26,7 @@ public class UserServiceStub implements UserService
         }
 
         User user = new User();
-        user.setId(1);
+        user.setId(BigInteger.ONE);
         user.setEmail(email);
         user.setPassword(password);
         user.setName("John");

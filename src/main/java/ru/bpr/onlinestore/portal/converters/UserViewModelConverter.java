@@ -11,7 +11,7 @@ public class UserViewModelConverter implements Converter<User, UserViewModel>
     {
         UserViewModel target = new UserViewModel();
 
-        target.setId(Integer.toString(source.getId()));
+        target.setId(String.valueOf(source.getId()));
         target.setEmail(source.getEmail());
         target.setName(source.getName());
         target.setSurname(source.getSurname());
