@@ -24,12 +24,14 @@ portalControllers.controller("ChooseAddressController", function($scope, $state,
     };
 
     $scope.submit = function() {
-        if ($scope.isCustomAddressValid()) {
-            if ($scope.form.isCustom) {
+        if ($scope.form.isCustom) {
+            if ($scope.isCustomAddressValid()) {
                 shoppingCart.deliveryAddress = $scope.form.customAddress;
+                $state.go('payment');
             }
-
-            $state.go('payment')
+        } else {
+            shoppingCart.deliveryAddress = user.info.address;
+            $state.go('payment');
         }
     };
 
