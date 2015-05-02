@@ -33,7 +33,7 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $s
 
     this.showSignInForm = function(event, callback) {
         var signInForm = $modal.open({
-            templateUrl: "views/portal-sign-in-form.html",
+            templateUrl: "views/portal/portal-sign-in-form.html",
             controller: "SignInController",
             size: "sm"
         });

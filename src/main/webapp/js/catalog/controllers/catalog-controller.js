@@ -1,0 +1,5 @@
+catalogControllers.controller("CatalogController", function() {
+
+
+
+});

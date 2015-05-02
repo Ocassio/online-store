@@ -1,5 +1,5 @@
 /**
- * A place for custom portal CSS
+ * A place for a custom portal CSS
  */
 
 .nav, .pagination, .carousel, .panel-title, .dropdown-menu a { cursor: pointer; } /* fix Angular UI pointer missing */

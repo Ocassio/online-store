@@ -29,7 +29,7 @@ portalControllers.controller("SignInController", function($scope, $http, $modal,
     $scope.showSignUpForm = function() {
         $scope.cancel();
         $modal.open({
-            templateUrl: "views/portal-sign-up-form.html",
+            templateUrl: "views/portal/portal-sign-up-form.html",
             controller: "SignUpController"
         });
     };

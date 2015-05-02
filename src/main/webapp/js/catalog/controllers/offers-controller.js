@@ -1,0 +1,5 @@
+catalogControllers.controller("OffersController", function() {
+
+    
+
+});

@@ -1,4 +1,4 @@
-portalControllers.controller("PaymentController", function($scope, $state, user, shoppingCart) {
+portalControllers.controller("ReviewController", function($scope, $state, user, shoppingCart) {
 
     if (!user.isSignedIn() || shoppingCart.isEmpty()) {
         $state.go('catalog');
@@ -8,11 +8,11 @@ portalControllers.controller("PaymentController", function($scope, $state, user,
 
 
     $scope.submit = function() {
-        $state.go('review');
+
     };
 
     $scope.back = function() {
-        $state.go('chooseAddress');
+        $state.go('payment');
     };
 
 });

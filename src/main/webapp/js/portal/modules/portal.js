@@ -7,26 +7,31 @@ portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$u
         .state('catalog', {
             url: '/catalog?page&category',
             controller: 'CatalogController as catalogCtrl',
-            templateUrl: 'views/portal-catalog.html'
+            templateUrl: 'views/portal/portal-catalog.html'
         })
         .state('cart', {
             url: '/cart',
-            templateUrl: 'views/portal-cart.html',
+            templateUrl: 'views/portal/portal-cart.html',
             controller: 'CartController as cartCtrl'
         })
         .state('profile', {
             url: '/profile',
-            templateUrl: 'views/portal-profile.html',
+            templateUrl: 'views/portal/portal-profile.html',
             controller: 'ProfileController as profileCtrl'
         })
         .state('chooseAddress', {
             url: '/choose-address',
-            templateUrl: 'views/portal-choose-address.html',
+            templateUrl: 'views/portal/portal-choose-address.html',
             controller: 'ChooseAddressController as addressCtrl'
         })
         .state('payment', {
             url: '/payment',
-            templateUrl: 'views/portal-payment.html',
+            templateUrl: 'views/portal/portal-payment.html',
             controller: "PaymentController as paymentCtrl"
+        })
+        .state('review', {
+            url: '/review',
+            templateUrl: 'views/portal/portal-review.html',
+            controller: 'ReviewController as reviewCtrl'
         });
 }]);

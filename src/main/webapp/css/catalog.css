@@ -1,0 +1,5 @@
+/**
+ * A place for a custom catalog CSS
+ */
+
+.nav, .pagination, .carousel, .panel-title, .dropdown-menu a { cursor: pointer; } /* fix Angular UI pointer missing */

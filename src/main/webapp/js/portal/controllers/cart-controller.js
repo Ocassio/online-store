@@ -6,7 +6,7 @@ portalControllers.controller("CartController", function($rootScope, $scope, $mod
 
     this.clear = function() {
         var dialog = $modal.open({
-            templateUrl: "views/portal-cart-clear-confirm.html",
+            templateUrl: "views/portal/portal-cart-clear-confirm.html",
             controller: "CartClearConfirmController"
         });
 
