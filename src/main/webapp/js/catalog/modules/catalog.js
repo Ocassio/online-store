@@ -1,5 +1,5 @@
 var catalog = angular.module("catalog", ["ui.bootstrap", "ui.router",
-    "catalog.controllers", "catalog.directives", "catalog.services"]);
+    "catalog.controllers", "catalog.directives", "catalog.services", "shared.services"]);
 
 catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
     $urlRouterProvider.otherwise('/offers');

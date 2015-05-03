@@ -1,4 +1,4 @@
-portalServices.factory("user", function($http) {
+sharedServices.factory("user", function($http) {
     var service =  {
 
         /**
