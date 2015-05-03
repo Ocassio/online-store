@@ -10,17 +10,18 @@
             <a class="navbar-brand" href="#">Catalog Management System</a>
         </div>
         <div class="collapse navbar-collapse" id="catalog-navbar-collapse">
+            <div ng-show="user.isSignedIn()">
             <ul class="nav navbar-nav">
                 <li><a href="#/categories">Categories</a></li>
                 <li><a href="#/offers">Offers</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Current User <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.info.name}} <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Profile</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a ng-click="signOut()">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -30,6 +31,7 @@
                     <input type="text" placeholder="Search" class="form-control" ng-model="catalogCtrl.searchText">
                 </div>
             </form>
+            </div>
         </div>
     </div>
 </nav>
