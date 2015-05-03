@@ -11,7 +11,7 @@ catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$
         })
         .state('login', {
             url: '/login',
-            //controller: 'LoginController as loginCtrl',
+            controller: 'LoginController as loginCtrl',
             templateUrl: 'views/catalog/catalog-login.html'
         });
 }]);
