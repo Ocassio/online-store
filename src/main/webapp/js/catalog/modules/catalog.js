@@ -8,5 +8,10 @@ catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$
             url: '/offers',
             controller: 'OffersController as offersCtrl',
             templateUrl: 'views/catalog/catalog-offers.html'
+        })
+        .state('login', {
+            url: '/login',
+            //controller: 'LoginController as loginCtrl',
+            templateUrl: 'views/catalog/catalog-login.html'
         });
 }]);
