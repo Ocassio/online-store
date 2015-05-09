@@ -53,9 +53,9 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
         }
     };
 
-    this.getCurrentCategoryForFilter = function() {
+    this.getCurrentCategoryIdForFilter = function() {
         if (this.currentCategory) {
-            return this.currentCategory;
+            return this.currentCategory.id;
         }
 
         return "!null";

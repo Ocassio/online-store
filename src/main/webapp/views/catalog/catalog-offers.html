@@ -5,10 +5,6 @@
         <th>Price</th>
     </thead>
     <tbody>
-        <tr><td>Some name</td><td>Some category</td><td>$100</td></tr>
-        <tr><td>Some name</td><td>Some category</td><td>$100</td></tr>
-        <tr><td>Some name</td><td>Some category</td><td>$100</td></tr>
-        <tr><td>Some name</td><td>Some category</td><td>$100</td></tr>
-        <tr><td>Some name</td><td>Some category</td><td>$100</td></tr>
+        <tr ng-repeat="offer in offersCtrl.offers"><td>{{offer.name}}</td><td>{{offer.category.name}}</td><td>{{offer.price}}</td></tr>
     </tbody>
 </table>

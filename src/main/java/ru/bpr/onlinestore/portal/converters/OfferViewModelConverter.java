@@ -1,6 +1,9 @@
 package ru.bpr.onlinestore.portal.converters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.models.Offer;
 import ru.bpr.onlinestore.portal.services.models.Rating;
@@ -9,6 +12,9 @@ import java.util.List;
 
 public class OfferViewModelConverter implements Converter<Offer, OfferViewModel>
 {
+    @Autowired
+    private ConversionService conversionService;
+
     @Override
     public OfferViewModel convert(Offer source)
     {
@@ -19,7 +25,7 @@ public class OfferViewModelConverter implements Converter<Offer, OfferViewModel>
             target.setRating(Float.toString(calculateRating(source.getRatings())));
         }
         target.setName(source.getName());
-        target.setCategoryId(String.valueOf(source.getCategory().getId()));
+        target.setCategory(conversionService.convert(source.getCategory(), CategoryViewModel.class));
         target.setPrice(String.valueOf(source.getPrice()));
         target.setDescription(source.getDescription());
 

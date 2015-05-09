@@ -16,8 +16,8 @@ public class CatalogServiceStub implements CatalogService
 
     public CatalogServiceStub()
     {
-        offers = generateOffers();
         categories = generateCategories();
+        offers = generateOffers();
     }
 
     public List<OfferViewModel> getOffers()
@@ -42,7 +42,7 @@ public class CatalogServiceStub implements CatalogService
         int countOffers = 20;
         for (int i = 1; i < countOffers; i++)
         {
-            offers.add(new OfferViewModel("" + i, "Offer " + i, Integer.toString(random.nextInt(5) + 1), "Offer " + i + " description", Integer.toString(random.nextInt(30000)), Integer.toString(random.nextInt(5) + 1)));
+            offers.add(new OfferViewModel("" + i, "Offer " + i, categories.get(random.nextInt(5)), "Offer " + i + " description", Integer.toString(random.nextInt(30000)), Integer.toString(random.nextInt(5) + 1)));
         }
 
         return offers;
