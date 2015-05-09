@@ -6,7 +6,8 @@
     </thead>
     <tbody>
         <tr ng-repeat="offer in filteredList = (offersCtrl.offers | filter: catalogCtrl.searchText) |
-            startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage">
+            startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage"
+            ng-click="offersCtrl.select(offer)" ng-class="{info: offersCtrl.isSelected(offer)}">
             <td>{{offer.name}}</td><td>{{offer.category.name}}</td><td>{{offer.price | currency}}</td>
         </tr>
     </tbody>

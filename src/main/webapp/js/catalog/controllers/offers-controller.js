@@ -14,6 +14,8 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
 
     this.offersInitialized = false;
 
+    this.selectedOffer = null;
+
     this.offers = [];
 
     $http.get("/online-store/rest/offers/get").success(function(data) {
@@ -43,6 +45,18 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
     $scope.$on($rootScope.consts.events.ADD, this.onAdd.bind(this));
     $scope.$on($rootScope.consts.events.EDIT, this.onEdit.bind(this));
     $scope.$on($rootScope.consts.events.DELETE, this.onDelete.bind(this));
+
+    this.isSelected = function(offer) {
+        return offer === this.selectedOffer;
+    };
+
+    this.select = function(offer) {
+        if (!this.isSelected(offer)) {
+            this.selectedOffer = offer;
+        } else {
+            this.selectedOffer = null;
+        }
+    };
 
     $scope.setPageUrl = function() {
         if (offersCtrl.offersInitialized) {
