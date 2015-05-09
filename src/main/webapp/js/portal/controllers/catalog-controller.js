@@ -1,6 +1,6 @@
-portalControllers.controller("CatalogController", function($rootScope, $http, shoppingCart, $scope, $state) {
+portalControllers.controller("CatalogController", function($rootScope, $http, shoppingCart, $scope, $state, catalog) {
 
-    var catalog = this;
+    var catalogCtrl = this;
 
     $scope.totalItems = 0;
     $scope.itemsPerPage = 6;
@@ -14,19 +14,19 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
 
     this.offers = [];
 
-    $http.get("/online-store/rest/offers/get").success(function(data) {
-        catalog.offers = data;
-        catalog.totalItems = data.length;
+    catalog.getOffers().success(function(data) {
+        catalogCtrl.offers = data;
+        catalogCtrl.totalItems = data.length;
 
-        catalog.offersLoadingCallback();
+        catalogCtrl.offersLoadingCallback();
     });
 
     this.categories = [];
 
-    $http.get("/online-store/rest/categories/get").success(function(data) {
-        catalog.categories = data;
+    catalog.getCategories().success(function(data) {
+        catalogCtrl.categories = data;
 
-        catalog.categoriesLoadedCallback();
+        catalogCtrl.categoriesLoadedCallback();
     });
 
     this.offersLoadingCallback = function() {
@@ -46,10 +46,10 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
     };
 
     $scope.setPageUrl = function() {
-        if (catalog.offersInitialized && catalog.categoriesInitialized) {
+        if (catalogCtrl.offersInitialized && catalogCtrl.categoriesInitialized) {
             var categoryId;
-            if (catalog.currentCategory) {
-                categoryId = catalog.currentCategory.id;
+            if (catalogCtrl.currentCategory) {
+                categoryId = catalogCtrl.currentCategory.id;
             }
             var params = {
                 page: $scope.currentPage,

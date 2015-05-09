@@ -1,4 +1,4 @@
-catalogControllers.controller("OffersController", function($rootScope, $scope, $http, $state, user) {
+catalogControllers.controller("OffersController", function($rootScope, $scope, $http, $state, user, catalog) {
 
     if (!user.isSignedIn()) {
         $state.go("login");
@@ -18,7 +18,7 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
 
     this.offers = [];
 
-    $http.get("/online-store/rest/offers/get").success(function(data) {
+    catalog.getOffers().success(function(data) {
         this.offers = data;
         this.offersLoadingCallback();
     }.bind(this));
@@ -31,15 +31,21 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
     };
 
     this.onAdd = function() {
+        if (this.selectedOffer) {
 
+        }
     };
 
     this.onEdit = function() {
+        if (this.selectedOffer) {
 
+        }
     };
 
     this.onDelete = function() {
+        if (this.selectedOffer) {
 
+        }
     };
 
     $scope.$on($rootScope.consts.events.ADD, this.onAdd.bind(this));
