@@ -5,6 +5,8 @@
         <th>Price</th>
     </thead>
     <tbody>
-        <tr ng-repeat="offer in offersCtrl.offers"><td>{{offer.name}}</td><td>{{offer.category.name}}</td><td>{{offer.price}}</td></tr>
+        <tr ng-repeat="offer in offersCtrl.offers | filter: catalogCtrl.searchText">
+            <td>{{offer.name}}</td><td>{{offer.category.name}}</td><td>{{offer.price | currency}}</td>
+        </tr>
     </tbody>
 </table>

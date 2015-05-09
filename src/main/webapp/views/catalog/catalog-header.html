@@ -12,8 +12,9 @@
         <div class="collapse navbar-collapse" id="catalog-navbar-collapse">
             <div ng-show="user.isSignedIn()">
             <ul class="nav navbar-nav">
-                <li><a href="#/categories">Categories</a></li>
-                <li><a href="#/offers">Offers</a></li>
+                <li><a ng-click="add()">Add</a></li>
+                <li><a ng-click="edit()">Edit</a></li>
+                <li><a ng-click="delete()">Delete</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
