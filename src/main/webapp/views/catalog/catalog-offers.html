@@ -5,8 +5,10 @@
         <th>Price</th>
     </thead>
     <tbody>
-        <tr ng-repeat="offer in offersCtrl.offers | filter: catalogCtrl.searchText">
+        <tr ng-repeat="offer in filteredList = (offersCtrl.offers | filter: catalogCtrl.searchText) |
+            startFrom: (currentPage - 1) * itemsPerPage | limitTo: itemsPerPage">
             <td>{{offer.name}}</td><td>{{offer.category.name}}</td><td>{{offer.price | currency}}</td>
         </tr>
     </tbody>
 </table>
+<shared-pagination></shared-pagination>

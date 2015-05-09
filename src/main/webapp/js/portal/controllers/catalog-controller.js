@@ -2,12 +2,12 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
 
     var catalog = this;
 
-    this.totalItems = 0;
-    this.itemsPerPage = 6;
-    this.maxSize = 5;
+    $scope.totalItems = 0;
+    $scope.itemsPerPage = 6;
+    $scope.maxSize = 5;
     this.maxRating = 5;
 
-    this.currentPage = 1;
+    $scope.currentPage = 1;
 
     this.offersInitialized = false;
     this.categoriesInitialized = false;
@@ -32,22 +32,28 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
     this.offersLoadingCallback = function() {
         this.offersInitialized = true;
         if ($state.params.page) {
-            this.currentPage = $state.params.page;
+            $scope.currentPage = $state.params.page;
         }
     };
 
     this.categoriesLoadedCallback = function() {
         this.categoriesInitialized = true;
         if ($state.params.category) {
-            this.currentCategory = $state.params.category;
+            this.currentCategory = _.find(this.categories, function(category) {
+                return category.id === $state.params.category;
+            });
         }
     };
 
-    this.setPageUrl = function() {
-        if (this.offersInitialized && this.categoriesInitialized) {
+    $scope.setPageUrl = function() {
+        if (catalog.offersInitialized && catalog.categoriesInitialized) {
+            var categoryId;
+            if (catalog.currentCategory) {
+                categoryId = catalog.currentCategory.id;
+            }
             var params = {
-                page: this.currentPage,
-                category: this.currentCategory
+                page: $scope.currentPage,
+                category: categoryId
             };
             $state.transitionTo('catalog', params, $rootScope.consts.routing.TRANSITION_WITHOUT_RELOADING_OPTIONS);
         }

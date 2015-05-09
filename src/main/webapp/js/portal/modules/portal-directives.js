@@ -1,4 +1,4 @@
-var portalDirectives = angular.module("portal.directives", []);
+var portalDirectives = angular.module("portal.directives", ["shared.directives"]);
 
 portalDirectives.directive("portalHeader", function() {
     return {
@@ -18,13 +18,6 @@ portalDirectives.directive("portalOffersList", function() {
     return {
         restrict: "E",
         templateUrl: "views/portal/portal-offers-list.html"
-    };
-});
-
-portalDirectives.directive("portalOffersPagination", function() {
-    return {
-        restrict: "E",
-        templateUrl: "views/portal/portal-offers-pagination.html"
     };
 });
 

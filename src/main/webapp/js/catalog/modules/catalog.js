@@ -1,11 +1,11 @@
 var catalog = angular.module("catalog", ["ui.bootstrap", "ui.router",
-    "catalog.controllers", "catalog.directives", "catalog.services", "shared.services"]);
+    "catalog.controllers", "catalog.directives", "catalog.services", "shared.services", "shared.filters"]);
 
 catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
     $urlRouterProvider.otherwise('/offers');
     $stateProvider
         .state('offers', {
-            url: '/offers',
+            url: '/offers?page',
             controller: 'OffersController as offersCtrl',
             templateUrl: 'views/catalog/catalog-offers.html'
         })

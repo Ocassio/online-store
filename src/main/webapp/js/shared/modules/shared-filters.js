@@ -1,6 +1,6 @@
-var portalFilters = angular.module("portal.filters", []);
+var sharedFilters = angular.module("shared.filters", []);
 
-portalFilters.filter('startFrom', function() {
+sharedFilters.filter('startFrom', function() {
     return function(input, start) {
         start = +start; //parse to int
         return input.slice(start);

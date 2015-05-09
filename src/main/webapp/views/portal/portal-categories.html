@@ -1,6 +1,6 @@
 <div class="categories">
     <div class="btn-group btn-group-justified">
-        <label ng-repeat="category in catalogCtrl.categories" class="btn btn-default" ng-change="catalogCtrl.setPageUrl()"
+        <label ng-repeat="category in catalogCtrl.categories" class="btn btn-default" ng-change="setPageUrl()"
                ng-model="catalogCtrl.currentCategory" btn-radio="category" uncheckable>
             {{category.name}}
         </label>

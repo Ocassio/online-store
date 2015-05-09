@@ -1,5 +1,5 @@
 var portal = angular.module("portal", ["ui.bootstrap", "ui.router",
-    "portal.controllers", "portal.filters", "portal.directives", "portal.services",
+    "portal.controllers", "shared.filters", "portal.directives", "portal.services",
     "shared.services"]);
 
 portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {

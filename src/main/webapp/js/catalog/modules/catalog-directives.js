@@ -1,4 +1,4 @@
-var catalogDirectives = angular.module("catalog.directives", []);
+var catalogDirectives = angular.module("catalog.directives", ["shared.directives"]);
 
 catalogDirectives.directive("catalogHeader", function() {
     return {
