@@ -1,4 +1,4 @@
-catalogControllers.controller("OffersController", function($rootScope, $scope, $http, $state, user, catalog) {
+catalogControllers.controller("OffersController", function($rootScope, $scope, $http, $state, $modal, user, catalog) {
 
     if (!user.isSignedIn()) {
         $state.go("login");
@@ -30,27 +30,66 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
         }
     };
 
-    this.onAdd = function() {
-        if (this.selectedOffer) {
+    this.add = function(offer) {
 
+    };
+
+    this.edit = function(offer) {
+
+    };
+
+    this.delete = function() {
+        if (this.selectedOffer) {
+            var dialog = $modal.open({
+                templateUrl: "views/catalog/catalog-offers-delete-confirm.html",
+                controller: "OffersDeleteConfirmController"
+            });
+
+            dialog.result.then(this.processDelete.bind(this));
         }
     };
 
-    this.onEdit = function() {
-        if (this.selectedOffer) {
+    this.processAdd = function(offer) {
+        catalog.addOffer(offer).success(this.onAdd.bind(this));
+    };
 
+    this.processEdit = function(offer) {
+        if (this.selectedOffer) {
+            catalog.editOffer(offer).success(this.onEdit.bind(this, offer));
         }
+    };
+
+    this.processDelete = function() {
+        catalog.deleteOffer(this.selectedOffer.id).success(this.onDelete.bind(this));
+    };
+
+    this.onAdd = function(offer) {
+        offers.push(offer);
+    };
+
+    this.onEdit = function(offer) {
+        _.find(this.offers, function(current, index, offers) {
+            if (current.id === offer.id) {
+                offers[index] = offer;
+                this.selectedOffer = offer;
+
+                return true;
+            }
+
+            return false;
+        }.bind(this));
     };
 
     this.onDelete = function() {
-        if (this.selectedOffer) {
-
-        }
+        this.offers = _.filter(this.offers, function(offer) {
+            return offer.id !== this.selectedOffer.id;
+        }.bind(this));
+        this.selectedOffer = null;
     };
 
-    $scope.$on($rootScope.consts.events.ADD, this.onAdd.bind(this));
-    $scope.$on($rootScope.consts.events.EDIT, this.onEdit.bind(this));
-    $scope.$on($rootScope.consts.events.DELETE, this.onDelete.bind(this));
+    $scope.$on($rootScope.consts.events.ADD, this.add.bind(this));
+    $scope.$on($rootScope.consts.events.EDIT, this.edit.bind(this));
+    $scope.$on($rootScope.consts.events.DELETE, this.delete.bind(this));
 
     this.isSelected = function(offer) {
         return offer === this.selectedOffer;
