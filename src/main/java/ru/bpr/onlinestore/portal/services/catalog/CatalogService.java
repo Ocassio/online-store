@@ -10,4 +10,8 @@ public interface CatalogService
     List<OfferViewModel> getOffers();
     List<CategoryViewModel> getCategories();
     OfferViewModel getOffer(String offerId);
+
+    OfferViewModel addOffer(OfferViewModel offer);
+    void editOffer(OfferViewModel offer);
+    void deleteOffer(String offerId);
 }

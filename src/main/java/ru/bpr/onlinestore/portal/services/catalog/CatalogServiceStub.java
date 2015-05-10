@@ -35,6 +35,28 @@ public class CatalogServiceStub implements CatalogService
         return offers.get(Integer.parseInt(offerId));
     }
 
+    @Override
+    public OfferViewModel addOffer(OfferViewModel offer)
+    {
+        offer.setId(String.valueOf(offers.size()));
+        offers.add(offer);
+
+        return offer;
+    }
+
+    @Override
+    public void editOffer(OfferViewModel offer)
+    {
+        offers.remove(offer);
+        offers.add(offer);
+    }
+
+    @Override
+    public void deleteOffer(String offerId)
+    {
+        offers.removeIf(offer -> offer.getId().equals(offerId));
+    }
+
     private List<OfferViewModel> generateOffers()
     {
         Random random = new Random();

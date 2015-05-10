@@ -63,4 +63,22 @@ public class CatalogServiceImpl implements CatalogService
         Offer offer = offerOperationService.loadById(new BigInteger(offerId));
         return conversionService.convert(offer, OfferViewModel.class);
     }
+
+    @Override
+    public OfferViewModel addOffer(OfferViewModel offer)
+    {
+        return null;
+    }
+
+    @Override
+    public void editOffer(OfferViewModel offer)
+    {
+
+    }
+
+    @Override
+    public void deleteOffer(String offerId)
+    {
+
+    }
 }
