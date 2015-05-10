@@ -15,16 +15,24 @@ sharedServices.factory("catalog", function($http) {
             return $http.get("/online-store/rest/offers/get");
         },
 
-        addOffer: function() {
+        addOffer: function(offer) {
+            var params = {
+                offer: offer
+            };
 
+            return $http.put("/online-store/rest/offers/add", params);
         },
 
-        editOffer: function() {
+        editOffer: function(offer) {
+            var params = {
+                offer: offer
+            };
 
+            return $http.put("/online-store/rest/offers/edit", params);
         },
 
         deleteOffer: function(offerId) {
-
+            return $http.get("/online-store/rest/offers/delete/" + offerId);
         }
 
         /**
