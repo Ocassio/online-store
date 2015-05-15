@@ -31,7 +31,10 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
     };
 
     this.add = function(offer) {
-
+        var dialog = $modal.open({
+            templateUrl: "views/catalog/catalog-offers-add.html",
+            controller: "OffersAddController as offersAddCtrl"
+        });
     };
 
     this.edit = function(offer) {
