@@ -6,19 +6,19 @@
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.message}}</alert>
     <form name="offerForm" class="form" novalidate>
         <div class="form-group">
-            <label class="control-label">Name</label>
-            <input name="name" type="text" placeholder="Name" class="form-control" ng-model="form.name" required
+            <label class="control-label" for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Name" class="form-control" ng-model="form.name" required
                    ng-class="{'has-error': offerForm.name.$invalid && offerForm.name.$dirty, 'has-success': offerForm.name.$valid && offerForm.name.$dirty}">
         </div>
+        <label class="control-label" for="category">Category</label>
         <div class="form-group">
-            <label class="control-label">Category</label>
-            <select class="selectpicker">
+            <select id="category" name="category" class="selectpicker  full-width">
                 <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="control-label">Price</label>
-            <div class="input-group">
+            <label class="control-label" for="price">Price</label>
+            <div id="price" class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
                 <input name="price" type="number" placeholder="0" class="form-control" ng-model="form.price" required>
             </div>

@@ -20,7 +20,7 @@ sharedServices.factory("catalog", function($http) {
                 offer: offer
             };
 
-            return $http.put("/online-store/rest/offers/add", params);
+            return $http.post("/online-store/rest/offers/add", params);
         },
 
         editOffer: function(offer) {
