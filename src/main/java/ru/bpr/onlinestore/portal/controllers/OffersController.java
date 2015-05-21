@@ -1,10 +1,12 @@
 package ru.bpr.onlinestore.portal.controllers;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import ru.bpr.onlinestore.portal.models.FIleModel;
+import ru.bpr.onlinestore.portal.models.ResponseModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.catalog.CatalogService;
 
@@ -32,7 +34,7 @@ public class OffersController
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public OfferViewModel addOffer(@RequestParam("offer") OfferViewModel offer, MultipartHttpServletRequest request)
+    public ResponseModel addOffer(@RequestParam("offer") OfferViewModel offer, MultipartHttpServletRequest request)
     {
         Iterator<String> iterator = request.getFileNames();
         while (iterator.hasNext())
@@ -41,20 +43,28 @@ public class OffersController
             {
                 MultipartFile file = request.getFile(iterator.next());
 
-                FIleModel fIleModel = new FIleModel();
-                fIleModel.setFileName(file.getOriginalFilename());
-                fIleModel.setFileType(file.getContentType());
-                fIleModel.setBytes(file.getBytes());
+                FIleModel fileModel = new FIleModel();
+                fileModel.setFileName(file.getOriginalFilename());
+                fileModel.setFileType(file.getContentType());
+                fileModel.setBytes(file.getBytes());
 
-                offer.addImage(fIleModel);
+                offer.addImage(fileModel);
             }
             catch (IOException e)
             {
-                e.printStackTrace();
+                return new ResponseModel(false, e.getMessage());
             }
         }
 
-        return catalogService.addOffer(offer);
+        try
+        {
+            OfferViewModel newOffer = catalogService.addOffer(offer);
+            return new ResponseModel(true, newOffer);
+        }
+        catch (HibernateException e)
+        {
+            return new ResponseModel(false, e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)

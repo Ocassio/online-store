@@ -35,6 +35,8 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
             templateUrl: "views/catalog/catalog-offers-add.html",
             controller: "OffersAddController as offersAddCtrl"
         });
+
+        dialog.result.then(this.onAdd.bind(this));
     };
 
     this.edit = function(offer) {
@@ -52,10 +54,6 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
         }
     };
 
-    this.processAdd = function(offer) {
-        catalog.addOffer(offer).success(this.onAdd.bind(this));
-    };
-
     this.processEdit = function(offer) {
         if (this.selectedOffer) {
             catalog.editOffer(offer).success(this.onEdit.bind(this, offer));
@@ -67,7 +65,7 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
     };
 
     this.onAdd = function(offer) {
-        offers.push(offer);
+        this.offers.push(offer);
     };
 
     this.onEdit = function(offer) {

@@ -14,7 +14,7 @@ public class FIleModel
     {
     }
 
-    public FIleModel(String fileName,  String fileType, byte[] bytes)
+    public FIleModel(String fileName, String fileType, byte[] bytes)
     {
         this.fileName = fileName;
         this.fileType = fileType;

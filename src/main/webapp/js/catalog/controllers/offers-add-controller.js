@@ -2,6 +2,12 @@ catalogControllers.controller("OffersAddController", function($scope, $modalInst
 
     $scope.MODE = "add";
 
+    $scope.disableSubmitButton = false;
+
+    $scope.form = {
+        category: {}
+    };
+
     this.initDOM = function() {
         $('.selectpicker').selectpicker();
     };
@@ -16,11 +22,27 @@ catalogControllers.controller("OffersAddController", function($scope, $modalInst
 
     catalog.getCategories().success(function(data) {
         $scope.categories = data;
+        $scope.form.category = Object.create($scope.categories[0]);
         this.refreshSelectPickers();
     }.bind(this));
 
     $scope.submit = function() {
+        $scope.disableSubmitButton = true;
 
+        $scope.form.category = _.find($scope.categories, function(category) {
+            return category.id === $scope.form.category.id;
+        });
+
+        catalog.addOffer($scope.form).success(this.onAdd);
+    }.bind(this);
+
+    this.onAdd = function(response) {
+        if (response.success) {
+            $modalInstance.close(response.data);
+        } else {
+            $scope.addAlert("danger", response.error);
+            $scope.disableSubmitButton = false;
+        }
     };
 
     $scope.cancel = function() {
