@@ -1,32 +1,47 @@
 use `online-store`;
 
-insert into CATEGORIES values (1, 'category1');
-insert into CATEGORIES values (2, 'category2');
-insert into CATEGORIES values (3, 'category3');
-insert into CATEGORIES values (4, 'category4');
+set SQL_SAFE_UPDATES = 0;
 
-insert into users values (1, 'email1@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Valentin', 'Goncharov', 'Gai 1');
-insert into users values (2, 'email2@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Alexander', 'Shindin', 'XZ');
-insert into users values (3, 'email3@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Alexander', 'Ionov', 'XZ');
+delete from sales_order_entries;
+delete from sales_orders;
+delete from ratings;
+delete from offers;
+delete from users;
+delete from categories;
 
-insert into OFFERS values(1, 'Offer1', 'description1', 300, 1);
-insert into OFFERS values(2, 'Offer2', 'description2', 300, 1);
-insert into OFFERS values(3, 'Offer3', 'description3', 200, 1);
-insert into OFFERS values(4, 'Offer4', 'description4', 200, 2);
-insert into OFFERS values(5, 'Offer5', 'description5', 200, 2);
-insert into OFFERS values(6, 'Offer6', 'description6', 200, 3);
-insert into OFFERS values(7, 'Offer7', 'description7', 200, 3);
-insert into OFFERS values(8, 'Offer8', 'description8',200, 4);
+insert into categories (name) values
+	('category1'),
+	('category2'),
+    ('category3'),
+    ('category4');
 
-Insert into ratings values(1, 1, 1, 5, 'shit');
-Insert into ratings values(2, 1, 1, 5, 'shit');
-Insert into ratings values(3, 3, 2, 5, 'shit');
+insert into users (email, password, name, surname, address) values
+	('email1@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Valentin', 'Goncharov', 'Gai 1'),
+	('email2@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Alexander', 'Shindin', 'XZ'),
+	('email3@yandex.ru', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Alexander', 'Ionov', 'XZ');
 
-Insert into sales_orders values(1, 1, '2015-04-01 10:00:00');
+insert into offers (name, price, category, description) values
+	('Offer 1', 12, 1, 'Description 1'),
+    ('Offer 2', 121, 1, 'Description 2'),
+    ('Offer 3', 122, 2, 'Description 3'),
+    ('Offer 4', 123, 3, 'Description 4'),
+    ('Offer 5', 124, 3, 'Description 5'),
+    ('Offer 6', 125, 4, 'Description 6'),
+    ('Offer 7', 126, 4, 'Description 7'),
+    ('Offer 8', 127, 2, 'Description 8');
+
+Insert into ratings (user, offer, rating, comment) values
+	(1, 1, 5, 'Cool!'),
+    (2, 1, 4, 'Just fine.'),
+    (3, 1, 3, 'May be better...');
+
+/*Insert into sales_orders values(1, 1, '2015-04-01 10:00:00');
 Insert into sales_orders values(2, 2, '2015-04-01 10:00:00');
 Insert into sales_orders values(3, 3, '2015-04-01 10:00:00');
 Insert into sales_orders values(4, 3, '2015-04-01 10:00:00');
 
 Insert into sales_order_entries values(1, 1, 1, 5);
 Insert into sales_order_entries values(2, 2, 4, 5);
-Insert into sales_order_entries values(3, 3, 5, 5);
+Insert into sales_order_entries values(3, 3, 5, 5);*/
+
+set SQL_SAFE_UPDATES = 1;
