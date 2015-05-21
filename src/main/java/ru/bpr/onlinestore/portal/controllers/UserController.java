@@ -1,5 +1,6 @@
 package ru.bpr.onlinestore.portal.controllers;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.bpr.onlinestore.portal.models.ResponseModel;
 import ru.bpr.onlinestore.portal.models.user.PasswordChangeViewModel;
 import ru.bpr.onlinestore.portal.models.user.UserViewModel;
+import ru.bpr.onlinestore.portal.services.models.User;
 import ru.bpr.onlinestore.portal.services.user.UserService;
 import ru.bpr.onlinestore.portal.sessionbeans.UserHolder;
+
+import java.math.BigInteger;
 
 @RestController
 @RequestMapping("/user")
@@ -33,20 +37,51 @@ public class UserController
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public ResponseModel update(UserViewModel updateInfo)
     {
-        //TODO update current user profile
+        try
+        {
+            User user = userService.getUser(new BigInteger(updateInfo.getId()));
 
-        return new ResponseModel(true);
+            if (user != null)
+            {
+                user.setEmail(updateInfo.getEmail());
+                user.setAddress(updateInfo.getAddress());
+                user.setName(updateInfo.getName());
+                user.setSurname(updateInfo.getSurname());
+
+                userService.updateUser(user);
+
+                return new ResponseModel(true);
+            }
+
+            return new ResponseModel(false, "User doesn't exist");
+        }
+        catch (HibernateException e)
+        {
+            e.printStackTrace();
+            return new ResponseModel(false, e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.PUT)
     public ResponseModel changePassword(PasswordChangeViewModel updateInfo)
     {
-        if (!userHolder.getUser().getPassword().equals(updateInfo.getOldPassword()))
+        User user = userHolder.getUser();
+        if (!user.getPassword().equals(updateInfo.getOldPassword()))
         {
             return new ResponseModel(false, "Incorrect password");
         }
 
-        //TODO change current user password
+        user.setPassword(updateInfo.getPassword());
+
+        try
+        {
+            userService.updateUser(user);
+        }
+        catch (HibernateException e)
+        {
+            e.printStackTrace();
+            return new ResponseModel(false, e.getMessage());
+        }
 
         return new ResponseModel(true);
     }

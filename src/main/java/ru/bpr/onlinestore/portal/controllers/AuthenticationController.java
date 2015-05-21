@@ -1,5 +1,6 @@
 package ru.bpr.onlinestore.portal.controllers;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +35,19 @@ public class AuthenticationController
     @RequestMapping(value = "/signUp", method = RequestMethod.PUT)
     public ResponseModel signUp(@RequestBody SignUpDataViewModel signUpData)
     {
-        //TODO sign up user
+        ResponseModel response;
+        try
+        {
+            userService.addUser(signUpData.getEmail(), signUpData.getPassword(), signUpData.getName(),
+                    signUpData.getSurname(), signUpData.getAddress());
 
-        ResponseModel response = signIn(signUpData.getEmail(), signUpData.getPassword());
+            response = signIn(signUpData.getEmail(), signUpData.getPassword());
+        }
+        catch (HibernateException e)
+        {
+            response = new ResponseModel(false, e.getMessage());
+            e.printStackTrace();
+        }
 
         return response;
     }
