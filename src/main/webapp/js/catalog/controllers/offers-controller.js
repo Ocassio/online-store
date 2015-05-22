@@ -30,7 +30,7 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
         }
     };
 
-    this.add = function(offer) {
+    this.add = function() {
         var dialog = $modal.open({
             templateUrl: "views/catalog/catalog-offers-add.html",
             controller: "OffersAddController as offersAddCtrl"
@@ -39,8 +39,16 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
         dialog.result.then(this.onAdd.bind(this));
     };
 
-    this.edit = function(offer) {
-
+    this.edit = function() {
+        var dialog = $modal.open({
+            templateUrl: "views/catalog/catalog-offers-add.html",
+            controller: "OffersEditController as offersEditCtrl",
+            resolve: {
+                offer: function() {
+                    return offersCtrl.selectedOffer;
+                }
+            }
+        });
     };
 
     this.delete = function() {

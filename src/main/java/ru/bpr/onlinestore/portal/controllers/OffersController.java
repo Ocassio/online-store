@@ -4,14 +4,10 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import ru.bpr.onlinestore.portal.models.FIleModel;
 import ru.bpr.onlinestore.portal.models.ResponseModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.catalog.CatalogService;
 
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -33,28 +29,28 @@ public class OffersController
         return catalogService.getOffer(offerId);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseModel addOffer(@RequestParam("offer") OfferViewModel offer, MultipartHttpServletRequest request)
+    @RequestMapping(value = "/add", method = RequestMethod.POST, headers="Content-Type=multipart/form-data")
+    public ResponseModel addOffer(/*@RequestParam("offer") */@RequestPart("offer") OfferViewModel offer, @RequestParam(value = "images", required = false) MultipartFile file)
     {
-        Iterator<String> iterator = request.getFileNames();
-        while (iterator.hasNext())
-        {
-            try
-            {
-                MultipartFile file = request.getFile(iterator.next());
-
-                FIleModel fileModel = new FIleModel();
-                fileModel.setFileName(file.getOriginalFilename());
-                fileModel.setFileType(file.getContentType());
-                fileModel.setBytes(file.getBytes());
-
-                offer.addImage(fileModel);
-            }
-            catch (IOException e)
-            {
-                return new ResponseModel(false, e.getMessage());
-            }
-        }
+//        Iterator<String> iterator = request.getFileNames();
+//        while (iterator.hasNext())
+//        {
+//            try
+//            {
+//                MultipartFile file = request.getFile(iterator.next());
+//
+//                FIleModel fileModel = new FIleModel();
+//                fileModel.setFileName(file.getOriginalFilename());
+//                fileModel.setFileType(file.getContentType());
+//                fileModel.setBytes(file.getBytes());
+//
+//                offer.addImage(fileModel);
+//            }
+//            catch (IOException e)
+//            {
+//                return new ResponseModel(false, e.getMessage());
+//            }
+//        }
 
         try
         {

@@ -29,6 +29,7 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success" ng-disabled="offerForm.$invalid || disableSubmitButton" ng-click="submit()">Add</button>
+    <button class="btn btn-success" ng-disabled="offerForm.$invalid || disableSubmitButton" ng-click="submit()" ng-show="MODE === 'add'">Add</button>
+    <button class="btn btn-success" ng-disabled="offerForm.$invalid || disableSubmitButton" ng-click="submit()" ng-show="MODE === 'edit'">Update</button>
     <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
 </div>
