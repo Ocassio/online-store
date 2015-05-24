@@ -57,6 +57,7 @@ sharedServices.factory("user", function($http) {
         update: function(email, name, surname, address) {
             var path = "/online-store/rest/user/update";
             var params = {
+                id: this.info.id,
                 email: email,
                 name: name,
                 surname: surname,

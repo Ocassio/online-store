@@ -3,6 +3,7 @@ package ru.bpr.onlinestore.portal.controllers;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class UserController
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseModel update(UserViewModel updateInfo)
+    public ResponseModel update(@RequestBody UserViewModel updateInfo)
     {
         try
         {
