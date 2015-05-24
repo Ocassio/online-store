@@ -3,7 +3,6 @@ package ru.bpr.onlinestore.portal.services.catalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.bpr.onlinestore.portal.models.catalog.CategoryViewModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.loading.CategoryOperationService;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class CatalogServiceImpl implements CatalogService
 {
     @Autowired(required = false)

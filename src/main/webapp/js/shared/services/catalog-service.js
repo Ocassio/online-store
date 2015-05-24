@@ -16,23 +16,23 @@ sharedServices.factory("catalog", function($http) {
         },
 
         addOffer: function(offer) {
-            //var params = {
-            //    offer: offer
-            //};
-            //
-            //return $http.post("/online-store/rest/offers/add", params);
+            var params = {
+                offer: offer
+            };
 
-            return $http({
-                method: 'POST',
-                url: "/online-store/rest/offers/add",
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                },
-                data: {
-                    offer: offer,
-                    images: null
-                }
-            });
+            return $http.post("/online-store/rest/offers/add", params);
+
+            //return $http({
+            //    method: 'POST',
+            //    url: "/online-store/rest/offers/add",
+            //    headers: {
+            //        'Content-Type': 'multipart/form-data'
+            //    },
+            //    data: {
+            //        offer: offer,
+            //        images: null
+            //    }
+            //});
         },
 
         editOffer: function(offer) {

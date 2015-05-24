@@ -3,7 +3,6 @@ package ru.bpr.onlinestore.portal.controllers;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import ru.bpr.onlinestore.portal.models.ResponseModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.catalog.CatalogService;
@@ -29,8 +28,8 @@ public class OffersController
         return catalogService.getOffer(offerId);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, headers="Content-Type=multipart/form-data")
-    public ResponseModel addOffer(/*@RequestParam("offer") */@RequestPart("offer") OfferViewModel offer, @RequestParam(value = "images", required = false) MultipartFile file)
+    @RequestMapping(value = "/add", method = RequestMethod.POST/*, headers="Content-Type=multipart/form-data"*/)
+    public ResponseModel addOffer(@RequestBody /*@RequestPart("offer")*/ OfferViewModel offer/*, @RequestParam(value = "images", required = false) MultipartFile file*/)
     {
 //        Iterator<String> iterator = request.getFileNames();
 //        while (iterator.hasNext())

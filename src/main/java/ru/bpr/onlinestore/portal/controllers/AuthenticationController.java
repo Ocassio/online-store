@@ -1,6 +1,5 @@
 package ru.bpr.onlinestore.portal.controllers;
 
-import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +42,7 @@ public class AuthenticationController
 
             response = signIn(signUpData.getEmail(), signUpData.getPassword());
         }
-        catch (HibernateException e)
+        catch (Exception e)
         {
             response = new ResponseModel(false, e.getMessage());
             e.printStackTrace();
@@ -63,6 +62,15 @@ public class AuthenticationController
         User user = userService.getUser(email, password);
         userHolder.setUser(user);
 
-        return new ResponseModel(true, userController.getCurrentUser());
+        try
+        {
+            return new ResponseModel(true, userController.getCurrentUser());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return new ResponseModel(false, e.getMessage());
+        }
+
     }
 }

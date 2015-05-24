@@ -2,14 +2,12 @@ package ru.bpr.onlinestore.portal.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.bpr.onlinestore.portal.services.loading.UserOperationService;
 import ru.bpr.onlinestore.portal.services.models.User;
 
 import java.math.BigInteger;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService
 {
     @Autowired(required = false)
