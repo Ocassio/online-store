@@ -18,12 +18,19 @@ catalogControllers.controller("OffersEditController", function($scope, $modalIns
         });
     }
 
+    this.setSelectValue = function(value) {
+        $timeout(function() {
+            $('.selectpicker').selectpicker('val', value);
+        });
+    };
+
     $scope.categories = [];
 
     catalog.getCategories().success(function(data) {
         $scope.categories = data;
         $scope.form.category = offer.category;
         this.refreshSelectPickers();
+        this.setSelectValue(offer.category.id);
     }.bind(this));
 
     $scope.submit = function() {
@@ -33,12 +40,12 @@ catalogControllers.controller("OffersEditController", function($scope, $modalIns
             return category.id === $scope.form.category.id;
         });
 
-        catalog.addOffer($scope.form).success(this.onAdd);
+        catalog.editOffer($scope.form).success(this.onEdit);
     }.bind(this);
 
-    this.onAdd = function(response) {
+    this.onEdit = function(response) {
         if (response.success) {
-            $modalInstance.close(response.data);
+            $modalInstance.close($scope.form);
         } else {
             $scope.addAlert("danger", response.error);
             $scope.disableSubmitButton = false;

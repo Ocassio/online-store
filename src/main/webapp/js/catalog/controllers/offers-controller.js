@@ -45,10 +45,12 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
             controller: "OffersEditController as offersEditCtrl",
             resolve: {
                 offer: function() {
-                    return offersCtrl.selectedOffer;
+                    return jQuery.extend(true, {}, offersCtrl.selectedOffer);
                 }
             }
         });
+
+        dialog.result.then(this.onEdit.bind(this));
     };
 
     this.delete = function() {
@@ -59,12 +61,6 @@ catalogControllers.controller("OffersController", function($rootScope, $scope, $
             });
 
             dialog.result.then(this.processDelete.bind(this));
-        }
-    };
-
-    this.processEdit = function(offer) {
-        if (this.selectedOffer) {
-            catalog.editOffer(offer).success(this.onEdit.bind(this, offer));
         }
     };
 

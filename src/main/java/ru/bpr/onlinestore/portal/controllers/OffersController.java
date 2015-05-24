@@ -63,9 +63,17 @@ public class OffersController
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.PUT)
-    public void editOffer(@RequestParam("offer") OfferViewModel offer)
+    public ResponseModel editOffer(@RequestBody OfferViewModel offer)
     {
-        catalogService.editOffer(offer);
+        try
+        {
+            catalogService.editOffer(offer);
+            return new ResponseModel(true);
+        }
+        catch (HibernateException e)
+        {
+            return new ResponseModel(false, e.getMessage());
+        }
     }
 
     @RequestMapping("/delete/{offerId}")

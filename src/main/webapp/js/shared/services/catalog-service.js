@@ -16,11 +16,11 @@ sharedServices.factory("catalog", function($http) {
         },
 
         addOffer: function(offer) {
-            var params = {
-                offer: offer
-            };
+            //var params = {
+            //    offer: offer
+            //};
 
-            return $http.post("/online-store/rest/offers/add", params);
+            return $http.post("/online-store/rest/offers/add", offer);
 
             //return $http({
             //    method: 'POST',
@@ -36,11 +36,7 @@ sharedServices.factory("catalog", function($http) {
         },
 
         editOffer: function(offer) {
-            var params = {
-                offer: offer
-            };
-
-            return $http.put("/online-store/rest/offers/edit", params);
+            return $http.put("/online-store/rest/offers/edit", offer);
         },
 
         deleteOffer: function(offerId) {
