@@ -4,6 +4,28 @@
     </div>
 
     <div class="form-group">
+        <label class="control-label">Card Number</label>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
+            <input name="number" type="text" placeholder="Card Number" class="form-control" ng-model="form.number" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Expiration Date</label>
+        <div class="input-group">
+            <input name="expiration-month" type="text" placeholder="MM" class="form-control" ng-model="form.expiration.month" required>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            <input name="expiration-year" type="text" placeholder="YY" class="form-control" ng-model="form.expiration.year" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">CV Code</label>
+        <div class="input-group">
+            <input name="cv" type="text" placeholder="CV" class="form-control" ng-model="form.cv" required>
+        </div>
+    </div>
+
+    <div class="form-group">
         <button class="btn btn-success pull-right" ng-click="submit()">Next</button>
         <button class="btn btn-warning" ng-click="back()">Back</button>
     </div>
