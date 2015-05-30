@@ -12,16 +12,32 @@ public class SalesOrderEntry
     @Column(name = "id")
     private BigInteger id;
 
-    @Column(name = "count", nullable = false)
-    private int count;
-
     @JoinColumn(name = "offer", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Offer offer;
 
+    @Column(name = "count", nullable = false)
+    private int count;
+
     @JoinColumn(name = "sales_order", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private SalesOrder salesOrder;
+
+    public SalesOrderEntry()
+    {
+    }
+
+    public SalesOrderEntry(Offer offer, int count)
+    {
+        this.offer = offer;
+        this.count = count;
+    }
+
+    public SalesOrderEntry(Offer offer, int count, SalesOrder salesOrder)
+    {
+        this(offer, count);
+        this.salesOrder = salesOrder;
+    }
 
     public BigInteger getId()
     {

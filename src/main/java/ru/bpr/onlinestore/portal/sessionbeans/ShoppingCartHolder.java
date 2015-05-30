@@ -14,6 +14,7 @@ import java.util.Map;
 public class ShoppingCartHolder implements Serializable
 {
     //TODO change view model to database model
+    //TODO UPDATE complex refactoring of services is needed due to design gap
     private Map<OfferViewModel, Integer> shoppingCartEntries;
 
     public Map<OfferViewModel, Integer> getShoppingCartEntries()

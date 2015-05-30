@@ -19,7 +19,7 @@ public class ShoppingCartController
     @RequestMapping("/get")
     public List<OfferViewModel> getOffers()
     {
-        return new ArrayList<OfferViewModel>();
+        return new ArrayList<>(shoppingCartService.getEntries().keySet());
     }
 
     @RequestMapping(value = "/add/{offerId}", method = RequestMethod.GET)

@@ -23,6 +23,8 @@ portalControllers.controller("PortalController", function($rootScope, $scope, $s
 
     $scope.shoppingCart = shoppingCart;
 
+    shoppingCart.loadOffers();
+
     var portal = this;
 
     this.go = function(path) {
