@@ -3,6 +3,7 @@ package ru.bpr.onlinestore.portal.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import ru.bpr.onlinestore.portal.models.ResponseModel;
 import ru.bpr.onlinestore.portal.models.catalog.OfferViewModel;
 import ru.bpr.onlinestore.portal.services.shoppingcart.ShoppingCartService;
 
@@ -55,6 +56,12 @@ public class ShoppingCartController
                 shoppingCartService.removeOffer(offerId, count);
             }
         }
+    }
+
+    @RequestMapping("/submit")
+    public ResponseModel submit()
+    {
+        return new ResponseModel(true);
     }
 
     @RequestMapping("/clear")

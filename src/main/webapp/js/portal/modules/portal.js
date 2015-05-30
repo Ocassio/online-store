@@ -34,5 +34,9 @@ portal.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$u
             url: '/review',
             templateUrl: 'views/portal/portal-review.html',
             controller: 'ReviewController as reviewCtrl'
+        })
+        .state('congrats', {
+            url: '/congrats',
+            templateUrl: 'views/portal/portal-congratulations.html'
         });
 }]);

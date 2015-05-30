@@ -59,6 +59,10 @@ portalServices.factory("shoppingCart", function($http, user) {
             }
         },
 
+        submit: function() {
+            return $http.get("/online-store/rest/cart/submit").success(this.clear.bind(this));
+        },
+
         /**
          * ------------------------------------------------------------------
          * ---------              Private methods                   ---------
@@ -87,6 +91,12 @@ portalServices.factory("shoppingCart", function($http, user) {
 
         onClear: function() {
             this.offers.splice(0, this.offers.length);
+        },
+
+        onSubmit: function(response) {
+            if (response.success) {
+                this.onClear();
+            }
         },
 
         offerMatcher: function(offer) {
