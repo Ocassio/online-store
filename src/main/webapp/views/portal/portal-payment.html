@@ -1,32 +1,47 @@
-<form name="addressForm" novalidate>
+<form name="paymentForm" novalidate>
     <div class="form-group">
-        <h3>Choose Payment Method</h3>
+        <h3>Payment Details</h3>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': paymentForm.number.$invalid && paymentForm.number.$dirty, 'has-success': paymentForm.number.$valid && paymentForm.number.$dirty}">
         <label class="control-label">Card Number</label>
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></span>
-            <input name="number" type="text" placeholder="Card Number" class="form-control" ng-model="form.number" required>
+            <input name="number" type="text" placeholder="Card Number" class="form-control" ng-model="form.number" ng-pattern="/^(\d){16}$/" required>
         </div>
     </div>
-    <div class="form-group">
+
+    <div class="form-group"
+         ng-class="{'has-error': (paymentForm.holderName.$invalid || paymentForm.holderSurname.$invalid) && (paymentForm.holderName.$dirty || paymentForm.holderSurname.$dirty),
+                    'has-success': paymentForm.holderName.$valid && paymentForm.holderSurname.$valid && (paymentForm.holderName.$dirty || paymentForm.holderSurname.$dirty)}">
+        <label class="control-label">Card Holder</label>
+        <div class="input-group">
+            <input name="holderName" type="text" placeholder="First Name" class="form-control" ng-model="form.holder.name" ng-pattern="/^[a-zA-Z]+$/" required>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+            <input name="holderSurname" type="text" placeholder="Second Name" class="form-control" ng-model="form.holder.surname" ng-pattern="/^[a-zA-Z]+$/" required>
+        </div>
+    </div>
+
+    <div class="form-group"
+         ng-class="{'has-error': (paymentForm.expMonth.$invalid || paymentForm.expYear.$invalid) && (paymentForm.expMonth.$dirty || paymentForm.expYear.$dirty),
+                    'has-success': paymentForm.expMonth.$valid && paymentForm.expYear.$valid && (paymentForm.expMonth.$dirty || paymentForm.expYear.$dirty)}">
         <label class="control-label">Expiration Date</label>
         <div class="input-group">
-            <input name="expiration-month" type="text" placeholder="MM" class="form-control" ng-model="form.expiration.month" required>
+            <input name="expMonth" type="number" placeholder="MM" class="form-control" ng-model="form.expiration.month" min="0" max="12" required>
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            <input name="expiration-year" type="text" placeholder="YY" class="form-control" ng-model="form.expiration.year" required>
+            <input name="expYear" type="number" placeholder="YY" class="form-control" ng-model="form.expiration.year" min="0" max="99" ng-pattern="/^(\d){2}$/" required>
         </div>
     </div>
-    <div class="form-group">
+
+    <div class="form-group" ng-class="{'has-error': paymentForm.cv.$invalid && paymentForm.cv.$dirty, 'has-success': paymentForm.cv.$valid && paymentForm.cv.$dirty}">
         <label class="control-label">CV Code</label>
         <div class="input-group">
-            <input name="cv" type="text" placeholder="CV" class="form-control" ng-model="form.cv" required>
+            <input name="cv" type="text" placeholder="CV" class="form-control" ng-model="form.cv" ng-pattern="/^(\d){3}$/" required>
         </div>
     </div>
 
     <div class="form-group">
-        <button class="btn btn-success pull-right" ng-click="submit()">Next</button>
+        <button class="btn btn-success pull-right" ng-disabled="paymentForm.$invalid" ng-click="submit()">Next</button>
         <button class="btn btn-warning" ng-click="back()">Back</button>
     </div>
 </form>
