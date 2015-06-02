@@ -67,6 +67,14 @@ portalControllers.controller("CatalogController", function($rootScope, $http, sh
         return "!null";
     };
 
+    this.getOfferImage = function(offer) {
+        if (offer.images[0]) {
+            return offer.images[0].fileName;
+        } else {
+            return "images/image-placeholder.png";
+        }
+    };
+
     this.addToCart = function(offer) {
         this.disableOfferButton(offer);
         shoppingCart.add(offer).success(this.enableOfferButton.bind(this, offer));

@@ -1,4 +1,4 @@
-var catalog = angular.module("catalog", ["ui.bootstrap", "ui.router",
+var catalog = angular.module("catalog", ["ui.bootstrap", "ui.router", "blueimp.fileupload",
     "catalog.controllers", "catalog.directives", "catalog.services", "shared.services", "shared.filters"]);
 
 catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {

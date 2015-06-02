@@ -9,7 +9,7 @@
                 <h2 class="panel-title">{{offer.name}}</h2>
             </div>
             <div class="panel-body">
-                <img src="images/image-placeholder.png" class="col-md-4 img-responsive offers-image">
+                <img src="{{catalogCtrl.getOfferImage(offer)}}" class="col-md-4 img-responsive offers-image">
                 <div class="col-md-8 offer-right-col">
                     <div class="row offer-right-col-row">
                         <h4 class="text-right">{{offer.price | currency}}</h4>
