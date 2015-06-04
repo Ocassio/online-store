@@ -1,0 +1,64 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.message}}</alert>
+<div class="row">
+    <form name="profileForm" class="form col-md-6" novalidate>
+        <div class="form-group">
+            <h4>Profile</h4>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': profileForm.email.$invalid && profileForm.email.$dirty, 'has-success': profileForm.email.$valid && profileForm.email.$dirty}">
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <input name="email" type="email" placeholder="Email" class="form-control"
+                       ng-class="{'has-error': profileForm.email.$error}" ng-model="form.email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group"
+                 ng-class="{'has-error': (profileForm.name.$invalid && profileForm.name.$dirty) || (profileForm.surname.$invalid && profileForm.surname.$dirty),
+                        'has-success': (profileForm.name.$valid && profileForm.name.$dirty) || (profileForm.surname.$valid && profileForm.surname.$dirty)}">
+                <input name="name" type="text" placeholder="First Name" class="form-control"
+                       ng-class="{'has-error': profileForm.name.$error}" ng-model="form.name" required>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                <input name="surname" type="text" placeholder="Second Name" class="form-control"
+                       ng-class="{'has-error': profileForm.surname.$error}" ng-model="form.surname" required>
+            </div>
+        </div>
+        <!--<div class="form-group"-->
+             <!--ng-class="{'has-error': profileForm.address.$invalid && profileForm.address.$dirty, 'has-success': profileForm.address.$valid && profileForm.address.$dirty}">-->
+            <!--<div class="input-group">-->
+                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>-->
+                <!--<input name="address" type="text" placeholder="Address" class="form-control" ng-value="profile.address"-->
+                       <!--ng-class="{'has-error': profileForm.address.$error}" ng-model="form.address" required>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group">
+            <button class="btn btn-success pull-right" ng-click="updateProfile(profileForm)"
+                    ng-disabled="profileForm.$invalid || profileForm.$pristine || disableUpdateButton">Update Info</button>
+        </div>
+    </form>
+    
+    <form name="passwordForm" class="form col-md-6">
+        <div class="form-group">
+            <h4>Password Change</h4>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error': (passwordForm.password.$invalid && passwordForm.password.$dirty) || (passwordForm.confirmation.$invalid && passwordForm.confirmation.$dirty),
+                        'has-success': (passwordForm.password.$valid && passwordForm.password.$dirty) || (passwordForm.confirmation.$valid && passwordForm.confirmation.$dirty)}">
+            <div class="input-group">
+                <input id="password" name="password" type="password" placeholder="New Password" class="form-control" ng-model="form.password" ng-minlength="6" required>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input name="confirmation" type="password" placeholder="Confirmation" class="form-control" ng-model="form.confirmation" ng-minlength="6" match="form.password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group" ng-class="{'has-error': passwordForm.oldPassword.$invalid && passwordForm.oldPassword.$dirty, 'has-success': passwordForm.oldPassword.$valid && passwordForm.oldPassword.$dirty}">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input id="oldPassword" name="oldPassword" type="password" placeholder="Password" class="form-control" ng-model="form.oldPassword" ng-minlength="6" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-warning pull-right" ng-click="changePassword(passwordForm)"
+                    ng-disabled="passwordForm.$invalid || disableChangePasswordButton">Change Password</button>
+        </div>
+    </form>
+</div>

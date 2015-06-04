@@ -9,9 +9,16 @@ import java.math.BigInteger;
 @Service
 public class UserServiceStub implements UserService
 {
+    private User user;
+
+    public UserServiceStub()
+    {
+        user = generateUser();
+    }
+
     public User getUser(BigInteger id)
     {
-        return null;
+        return user;
     }
 
     public User getUser(String email, String password)
@@ -25,29 +32,45 @@ public class UserServiceStub implements UserService
             throw new IllegalArgumentException("Password can't be empty");
         }
 
-        User user = new User();
-        user.setId(BigInteger.ONE);
         user.setEmail(email);
         user.setPassword(password);
-        user.setName("John");
-        user.setSurname("Smith");
-        user.setAddress("London");
 
         return user;
     }
 
     public void addUser(String email, String password, String name, String surname, String address)
     {
-
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setAddress(address);
     }
 
     public void updateUser(User user)
     {
-
+        this.user.setEmail(user.getEmail());
+        this.user.setAddress(user.getAddress());
+        this.user.setPassword(user.getPassword());
+        this.user.setName(user.getName());
+        this.user.setSurname(user.getName());
     }
 
     public void deleteUser(BigInteger id)
     {
 
+    }
+
+    private User generateUser()
+    {
+        User user = new User();
+        user.setId(BigInteger.ONE);
+        user.setEmail("test@test.com");
+        user.setPassword("123456");
+        user.setName("John");
+        user.setSurname("Smith");
+        user.setAddress("London");
+
+        return user;
     }
 }

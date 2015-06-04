@@ -76,8 +76,8 @@ sharedServices.factory("user", function($http) {
         changePassword: function(password, oldPassword) {
             var path = "/online-store/rest/user/changePassword";
             var params = {
-                password: password,
-                oldPassword: oldPassword
+                password: CryptoJS.SHA256(password).toString(),
+                oldPassword: CryptoJS.SHA256(oldPassword).toString()
             };
 
             var promise = $http.put(path, params).success(function(response) {

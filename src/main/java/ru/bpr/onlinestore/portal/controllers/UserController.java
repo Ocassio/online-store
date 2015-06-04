@@ -64,7 +64,7 @@ public class UserController
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.PUT)
-    public ResponseModel changePassword(PasswordChangeViewModel updateInfo)
+    public ResponseModel changePassword(@RequestBody PasswordChangeViewModel updateInfo)
     {
         User user = userHolder.getUser();
         if (!user.getPassword().equals(updateInfo.getOldPassword()))

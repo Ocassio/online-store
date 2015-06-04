@@ -41,4 +41,8 @@ catalogControllers.controller("CatalogController", function($rootScope, $scope, 
         $scope.$broadcast($rootScope.consts.events.DELETE);
     };
 
+    $scope.isMenuVisible = function() {
+        return $state.is("offers");
+    };
+
 });

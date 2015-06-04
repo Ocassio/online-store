@@ -1,6 +1,8 @@
 package ru.bpr.onlinestore.portal.models.user;
 
-public class PasswordChangeViewModel
+import java.io.Serializable;
+
+public class PasswordChangeViewModel implements Serializable
 {
     private String password;
     private String oldPassword;

@@ -13,5 +13,10 @@ catalog.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$
             url: '/login',
             controller: 'LoginController as loginCtrl',
             templateUrl: 'views/catalog/catalog-login.html'
+        })
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/catalog/catalog-profile.html',
+            controller: 'ProfileController as profileCtrl'
         });
 }]);
