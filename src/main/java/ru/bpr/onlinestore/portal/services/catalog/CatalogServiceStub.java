@@ -32,7 +32,7 @@ public class CatalogServiceStub implements CatalogService
 
     public OfferViewModel getOffer(String offerId)
     {
-        return offers.get(Integer.parseInt(offerId));
+        return offers.get(Integer.parseInt(offerId) - 1);
     }
 
     @Override
