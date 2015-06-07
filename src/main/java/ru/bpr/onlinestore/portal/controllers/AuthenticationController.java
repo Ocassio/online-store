@@ -59,12 +59,18 @@ public class AuthenticationController
 
     private ResponseModel signIn(String email, String password)
     {
-        User user = userService.getUser(email, password);
-        userHolder.setUser(user);
-
         try
         {
-            return new ResponseModel(true, userController.getCurrentUser());
+            User user = userService.getUser(email, password);
+            if (user != null)
+            {
+                userHolder.setUser(user);
+                return new ResponseModel(true, userController.getCurrentUser());
+            }
+            else
+            {
+                return new ResponseModel(false, "Wrong credentials");
+            }
         }
         catch (Exception e)
         {

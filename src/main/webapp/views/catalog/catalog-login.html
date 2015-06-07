@@ -3,7 +3,9 @@
         <div class="col-sm-6 col-md-4 col-md-offset-4">
             <div class="account-wall">
                 <h3 class="text-center ">Authentication</h3>
+
                 <form name="authForm" class="form form-signin" novalidate>
+                    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.message}}</alert>
                     <div class="form-group"
                          ng-class="{'has-error': authForm.email.$invalid && authForm.email.$dirty, 'has-success': authForm.email.$valid && authForm.email.$dirty}">
                         <div class="input-group">
